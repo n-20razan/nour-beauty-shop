@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>متجر نور - عناية بالبشرة والشعر</title>
+    <!-- Font Awesome للأيقونات الحقيقية -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fef9f2 0%, #fff5ed 100%);
+            color: #3e2a22;
+            scroll-behavior: smooth;
+        }
+
+        .top-bar {
+            background: #ffffffcc;
+            backdrop-filter: blur(12px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 1px solid #f0dfd2;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+        }
+
+        .store-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .store-brand input {
+            background: #fff7f0;
+            border: 1px solid #e7cfbf;
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            width: 200px;
+            transition: 0.2s;
+        }
+
+        .store-brand input:focus {
+            border-color: #c2845c;
+            outline: none;
+            box-shadow: 0 0 0 3px #f1dbce;
+        }
+
+        .store-brand h1 {
+            font-size: 1.7rem;
+            color: #ac6844;
+            letter-spacing: -0.5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            margin: 0 4px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #7a4c33;
+            border: 1px solid #eedbcb;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons a i {
+            font-size: 1.1rem;
+        }
+
+        .social-icons a:hover {
+            background: #ac6844;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cart-icon {
+            background: #ac6844;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 60px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cart-icon:hover {
+            background: #7e4d31;
+            transform: scale(1.02);
+        }
+
+        .cart-count {
+            background: #ffebdd;
+            color: #ac6844;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 25px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            border-right: 6px solid #dbb594;
+            padding-right: 18px;
+            margin: 30px 0 25px 0;
+            color: #7d4f34;
+        }
+
+        .groups-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .group-card {
+            background: white;
+            border-radius: 36px;
+            padding: 20px;
+            width: 320px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: 0.25s ease;
+            border: 1px solid #f7e4d8;
+        }
+
+        .group-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px -12px rgba(128, 70, 37, 0.15);
+        }
+
+        .group-card h3 {
+            background: #fbefE6;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            color: #b57046;
+        }
+
+        .product-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+            background: #fefaf7;
+            padding: 10px;
+            border-radius: 40px;
+            border: 1px solid #f0e1d6;
+        }
+
+        .product-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 30px;
+            object-fit: cover;
+            background: #ecdacf;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            font-size: 13px;
+            color: #c18862;
+        }
+
+        .add-to-cart-btn {
+            background: #e9cfbe;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 32px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            color: #5c3823;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #ac6844;
+            color: white;
+        }
+
+        .quiz-section {
+            background: #fffaf4;
+            border-radius: 48px;
+            padding: 30px;
+            margin: 45px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f3e3d8;
+        }
+
+        .question {
+            background: white;
+            border-radius: 28px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .question label {
+            margin-left: 25px;
+            cursor: pointer;
+        }
+
+        button.primary {
+            background: #ac6844;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button.primary:hover {
+            background: #7e4d31;
+        }
+
+        .rec-products {
+            margin-top: 30px;
+            background: #fff6ef;
+            border-radius: 38px;
+            padding: 20px;
+        }
+
+        .rec-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            margin: 12px 0;
+            padding: 12px 20px;
+            border-radius: 60px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fffcf9;
+            width: 90%;
+            max-width: 550px;
+            border-radius: 48px;
+            padding: 25px;
+            max-height: 80vh;
+            overflow-y: auto;
+            direction: rtl;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0ddd0;
+            padding: 12px 0;
+        }
+
+        .close-modal {
+            float: left;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #b28a6e;
+            border-top: 1px solid #f2e0d2;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .groups-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="store-brand">
+        <input type="text" id="storeNameInput" value="متجر نور" maxlength="30">
+        <h1 id="storeTitle">متجر نور</h1>
+    </div>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i> فيسبوك</a>
+        <a href="https://www.instagram.com/noorabujafer92?igsh=MXd1dW9oMWtvdWdheQ==" target="_blank"><i class="fab fa-instagram"></i> انستغرام</a>
+        <a href="#"><i class="fab fa-twitter"></i> تويتر</a>
+        <a href="#"><i class="fab fa-whatsapp"></i> واتساب</a>
+    </div>
+    <div class="cart-icon" id="cartIcon">
+        🛒 سلة <span id="cartCountBadge" class="cart-count">0</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section-title">✨ مجموعات العناية</div>
+    <div id="groupsContainer" class="groups-grid"></div>
+
+    <div class="quiz-section">
+        <h2 style="margin-bottom: 20px;">📋 استبيان العناية المخصص</h2>
+        <div id="quizQuestions"></div>
+        <button class="primary" id="submitQuizBtn">✨ اقترح المنتجات المناسبة</button>
+        <div id="recommendationArea" class="rec-products">
+            <strong>🌟 المنتجات المقترحة لك :</strong>
+            <div id="recList"></div>
+        </div>
+    </div>
+</div>
+
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h2>🛍️ سلة التسوق</h2>
+        <div id="cartItemsList"></div>
+        <hr>
+        <h3>الإجمالي: <span id="cartTotal">0</span> ₪</h3>
+        <button class="primary" id="checkoutBtn" style="width:100%; margin-top:15px;">💳 إتمام الشراء (تجريبي)</button>
+    </div>
+</div>
+
+<footer>© 2025 متجر نور للعناية – بشرة صحية وشعر مثالي</footer>
+
+<script>
+    // ========== قاعدة بيانات المنتجات بصور حقيقية لمنتجات العناية ==========
+    const productsDatabase = [
+        { id: 1, name: "مرطب الكولاجين العميق", category: "العناية بالوجه", price: 89, skinType: "جافة", hairType: null, concern: "جفاف", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop" },
+        { id: 2, name: "غسول منعش للبشرة الدهنية", category: "العناية بالوجه", price: 55, skinType: "دهنية", hairType: null, concern: "زيوت", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=200&h=200&fit=crop" },
+        { id: 3, name: "سيروم فيتامين سي المشرق", category: "مضاد للشيخوخة", price: 149, skinType: "عادية", hairType: null, concern: "بهتان", img: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=200&h=200&fit=crop" },
+        { id: 4, name: "شامبو مرطب للشعر الجاف", category: "العناية بالشعر", price: 67, skinType: null, hairType: "جاف", concern: "هيشان", img: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop" },
+        { id: 5, name: "بلسم منشط للشعر الدهني", category: "العناية بالشعر", price: 72, skinType: null, hairType: "دهني", concern: "لمعان زائد", img: "https://images.unsplash.com/photo-1621609764095-b32bbe35e1e8?w=200&h=200&fit=crop" },
+        { id: 6, name: "كريم ليلي مضاد للتجاعيد", category: "مضاد للشيخوخة", price: 199, skinType: "متقدمة", hairType: null, concern: "تجاعيد", img: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=200&h=200&fit=crop" },
+        { id: 7, name: "جل ترطيب للبشرة المختلطة", category: "الترطيب", price: 78, skinType: "مختلطة", hairType: null, concern: "توازن", img: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=200&h=200&fit=crop" },
+        { id: 8, name: "مصل إصلاح الشعر التالف", category: "العناية بالشعر", price: 112, skinType: null, hairType: "تالف", concern: "تقصف", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=200&h=200&fit=crop" },
+        { id: 9, name: "واقي شمسي لبشرة حساسة", category: "العناية بالوجه", price: 95, skinType: "حساسة", hairType: null, concern: "حماية", img: "https://images.unsplash.com/photo-1585254056360-d5c085ee37a4?w=200&h=200&fit=crop" },
+        { id: 10, name: "ماسك طيني للبشرة", category: "الترطيب", price: 45, skinType: "دهنية", hairType: null, concern: "زيوت", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&h=200&fit=crop" },
+        { id: 11, name: "كريم عين للانتفاخات", category: "مضاد للشيخوخة", price: 129, skinType: "عادية", hairType: null, concern: "بهتان", img: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=200&h=200&fit=crop" },
+        { id: 12, name: "زيت الأرغان للشعر", category: "العناية بالشعر", price: 88, skinType: null, hairType: "جاف", concern: "هيشان", img: "https://images.unsplash.com/photo-1585155770447-2f66e6a6c33a?w=200&h=200&fit=crop" }
+    ];
+
+    const productGroups = {
+        "العناية بالوجه": productsDatabase.filter(p => p.category === "العناية بالوجه"),
+        "العناية بالشعر": productsDatabase.filter(p => p.category === "العناية بالشعر"),
+        "الترطيب": productsDatabase.filter(p => p.category === "الترطيب"),
+        "مضاد للشيخوخة": productsDatabase.filter(p => p.category === "مضاد للشيخوخة")
+    };
+
+    let cart = [];
+    function loadCart() {
+        const saved = localStorage.getItem("nourCart");
+        if (saved) cart = JSON.parse(saved);
+        else cart = [];
+        updateCartUI();
+    }
+    function saveCart() {
+        localStorage.setItem("nourCart", JSON.stringify(cart));
+        updateCartUI();
+    }
+    function updateCartUI() {
+        const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document.getElementById("cartCountBadge").innerText = count;
+        renderCartModal();
+    }
+    function addToCart(product, quantity = 1) {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += quantity;
+        else cart.push({ ...product, quantity: quantity });
+        saveCart();
+        alert(`✨ تم إضافة ${product.name} إلى السلة`);
+    }
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        saveCart();
+        renderCartModal();
+    }
+    function updateQuantity(productId, newQty) {
+        if (newQty <= 0) {
+            removeFromCart(productId);
+            return;
+        }
+        const item = cart.find(i => i.id === productId);
+        if (item) item.quantity = newQty;
+        saveCart();
+        renderCartModal();
+    }
+    function renderCartModal() {
+        const container = document.getElementById("cartItemsList");
+        if (!container) return;
+        if (cart.length === 0) {
+            container.innerHTML = "<p>السلة فارغة حالياً 🛒</p>";
+            document.getElementById("cartTotal").innerText = "0";
+            return;
+        }
+        let total = 0;
+        container.innerHTML = cart.map(item => {
+            total += item.price * item.quantity;
+            return `
+                <div class="cart-item">
+                    <div><strong>${item.name}</strong><br><small>${item.price} ₪</small></div>
+                    <div>
+                        <button style="background:#e9cfbe; border:none; padding:4px 10px; border-radius:20px;" onclick="updateQuantity(${item.id}, ${item.quantity-1})">-</button>
+                        <span style="margin:0 10px;">${item.quantity}</span>
+                        <button style="background:#e9cfbe; border:none; padding:4px 10px; border-radius:20px;" onclick="updateQuantity(${item.id}, ${item.quantity+1})">+</button>
+                        <button style="background:#ddb69b; border:none; margin-right:10px; padding:4px 12px; border-radius:20px;" onclick="removeFromCart(${item.id})">حذف</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        document.getElementById("cartTotal").innerText = total;
+    }
+
+    function renderGroups() {
+        const container = document.getElementById("groupsContainer");
+        container.innerHTML = "";
+        for (const [groupName, products] of Object.entries(productGroups)) {
+            const groupDiv = document.createElement("div");
+            groupDiv.className = "group-card";
+            groupDiv.innerHTML = `<h3>📌 ${groupName}</h3>`;
+            products.forEach(prod => {
+                const prodElement = document.createElement("div");
+                prodElement.className = "product-item";
+                prodElement.innerHTML = `
+                    <img class="product-img" src="${prod.img}" alt="${prod.name}" loading="lazy">
+                    <div class="product-info">
+                        <div class="product-name">${prod.name}</div>
+                        <div class="product-price">${prod.price} ₪</div>
+                    </div>
+                    <button class="add-to-cart-btn" data-id="${prod.id}">➕ إضافة للسلة</button>
+                `;
+                groupDiv.appendChild(prodElement);
+            });
+            container.appendChild(groupDiv);
+        }
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pid = parseInt(btn.getAttribute('data-id'));
+                const product = productsDatabase.find(p => p.id === pid);
+                if (product) addToCart(product);
+            });
+        });
+    }
+
+    const quiz = [
+        { id: "skin", text: "نوع بشرتك؟", options: ["جافة", "دهنية", "مختلطة", "حساسة", "عادية", "متقدمة"] },
+        { id: "hair", text: "نوع شعرك؟", options: ["جاف", "دهني", "تالف", "عادي"] },
+        { id: "concern", text: "أكبر مشكلة تواجهك؟", options: ["جفاف", "زيوت", "بهتان", "هيشان", "تجاعيد", "تقصف", "توازن", "حماية"] }
+    ];
+    function renderQuiz() {
+        const container = document.getElementById("quizQuestions");
+        container.innerHTML = "";
+        quiz.forEach((q, idx) => {
+            const div = document.createElement("div");
+            div.className = "question";
+            div.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
+            q.options.forEach(opt => {
+                div.innerHTML += `<label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label>`;
+            });
+            container.appendChild(div);
+        });
+    }
+    function getQuizAnswers() {
+        let skin = null, hair = null, concern = null;
+        const radios0 = document.querySelectorAll('input[name="q0"]');
+        for (let r of radios0) if (r.checked) skin = r.value;
+        const radios1 = document.querySelectorAll('input[name="q1"]');
+        for (let r of radios1) if (r.checked) hair = r.value;
+        const radios2 = document.querySelectorAll('input[name="q2"]');
+        for (let r of radios2) if (r.checked) concern = r.value;
+        return { skin, hair, concern };
+    }
+    function suggestByQuiz() {
+        const { skin, hair, concern } = getQuizAnswers();
+        if (!skin && !hair && !concern) {
+            document.getElementById("recList").innerHTML = "<p>⚠️ أجب على سؤال واحد على الأقل للحصول على اقتراحات.</p>";
+            return;
+        }
+        let filtered = productsDatabase.filter(p => {
+            let match = false;
+            if (skin && p.skinType === skin) match = true;
+            if (hair && p.hairType === hair) match = true;
+            if (concern && p.concern === concern) match = true;
+            return match;
+        });
+        if (filtered.length === 0) filtered = productsDatabase.slice(0, 3);
+        const recDiv = document.getElementById("recList");
+        recDiv.innerHTML = filtered.map(p => `
+            <div class="rec-card">
+                <div><strong>🧴 ${p.name}</strong><br>${p.price} ₪</div>
+                <button class="add-to-cart-btn" data-rec="${p.id}">➕ أضف للسلة</button>
+            </div>
+        `).join('');
+        document.querySelectorAll('[data-rec]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const pid = parseInt(btn.getAttribute('data-rec'));
+                const prod = productsDatabase.find(x => x.id === pid);
+                if (prod) addToCart(prod);
+            });
+        });
+    }
+
+    const modal = document.getElementById("cartModal");
+    const cartIconBtn = document.getElementById("cartIcon");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    cartIconBtn.onclick = () => { modal.style.display = "flex"; renderCartModal(); };
+    closeModalBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+    document.getElementById("checkoutBtn").onclick = () => { alert("شكراً للتسوق من متجر نور"); cart = []; saveCart(); modal.style.display = "none"; };
+
+    function bindStore() {
+        const inp = document.getElementById("storeNameInput");
+        const titleSpan = document.getElementById("storeTitle");
+        inp.addEventListener("input", (e) => { let val = e.target.value.trim(); if (val === "") val = "متجر نور"; titleSpan.innerText = val; });
+    }
+
+    function init() {
+        renderGroups();
+        renderQuiz();
+        bindStore();
+        loadCart();
+        document.getElementById("submitQuizBtn").addEventListener("click", suggestByQuiz);
+    }
+    init();
+
+    Object.freeze(productsDatabase);
+    Object.freeze(productGroups);
+</script>
+</body>
+</html>
