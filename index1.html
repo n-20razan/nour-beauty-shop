@@ -2,595 +2,1617 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>متجر نور - عناية بالبشرة والشعر</title>
-    <!-- Font Awesome للأيقونات الحقيقية -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>noor store - منتجات العناية والجمال</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* تعريف متغيرات الألوان الثابتة لتسهيل التحكم بهوية الموقع البصرية */
+        :root {
+            --primary-color: #BBE0D9; /* اللون الفيروزي الهادئ المريح للعين */
+            --text-dark: #2A3B37;     /* لون النصوص الداكن القريب من الزيتي الأسود */
+            --text-muted: #556B66;    /* لون النصوص الثانوية أو الفرعية */
+            --bg-light: #F9FDFD;      /* لون خلفية الموقع البيضاء الناعمة */
+            --white: #ffffff;         /* اللون الأبيض الصافي */
+            --accent-gold: #D4AF37;   /* اللون الذهبي للميزات الهامة والتنبيهات */
+            --footer-dark: #1E2530;   /* لون خلفية الفوتر السفلي */
+        }
+
+        /* تصفيير الهوامش الافتراضية للمتصفح وتطبيق خط تجوال على كل العناصر */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Tajawal', sans-serif;
         }
 
+        /* تنسيق جسم الصفحة وتحديد لون الخلفية والنص الافتراضي */
         body {
-            background: linear-gradient(145deg, #fef9f2 0%, #fff5ed 100%);
-            color: #3e2a22;
-            scroll-behavior: smooth;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        .top-bar {
-            background: #ffffffcc;
-            backdrop-filter: blur(12px);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            border-bottom: 1px solid #f0dfd2;
+        /* تنسيق شريط الدعاء الإيماني أعلى الصفحة */
+        .top-blessing {
+            background-color:var(--primary-color);
+             color:s #2A3B37; 
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        /* جعل الهيدر (رأس الصفحة) ثابتاً في الأعلى أثناء التمرير */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+            padding: 15px 5%;
         }
 
-        .store-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .store-brand input {
-            background: #fff7f0;
-            border: 1px solid #e7cfbf;
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            width: 200px;
-            transition: 0.2s;
-        }
-
-        .store-brand input:focus {
-            border-color: #c2845c;
-            outline: none;
-            box-shadow: 0 0 0 3px #f1dbce;
-        }
-
-        .store-brand h1 {
-            font-size: 1.7rem;
-            color: #ac6844;
-            letter-spacing: -0.5px;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .social-icons a {
-            text-decoration: none;
-            background: #ffffffcc;
-            backdrop-filter: blur(4px);
-            margin: 0 4px;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-weight: 500;
-            color: #7a4c33;
-            border: 1px solid #eedbcb;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .social-icons a i {
-            font-size: 1.1rem;
-        }
-
-        .social-icons a:hover {
-            background: #ac6844;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .cart-icon {
-            background: #ac6844;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 60px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .cart-icon:hover {
-            background: #7e4d31;
-            transform: scale(1.02);
-        }
-
-        .cart-count {
-            background: #ffebdd;
-            color: #ac6844;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 30px auto;
-            padding: 0 25px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            border-right: 6px solid #dbb594;
-            padding-right: 18px;
-            margin: 30px 0 25px 0;
-            color: #7d4f34;
-        }
-
-        .groups-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .group-card {
-            background: white;
-            border-radius: 36px;
-            padding: 20px;
-            width: 320px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-            transition: 0.25s ease;
-            border: 1px solid #f7e4d8;
-        }
-
-        .group-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 35px -12px rgba(128, 70, 37, 0.15);
-        }
-
-        .group-card h3 {
-            background: #fbefE6;
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 50px;
-            margin-bottom: 18px;
-            font-size: 1.3rem;
-            color: #b57046;
-        }
-
-        .product-item {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 16px;
-            background: #fefaf7;
-            padding: 10px;
-            border-radius: 40px;
-            border: 1px solid #f0e1d6;
-        }
-
-        .product-img {
-            width: 65px;
-            height: 65px;
-            border-radius: 30px;
-            object-fit: cover;
-            background: #ecdacf;
-        }
-
-        .product-info {
-            flex: 1;
-        }
-
-        .product-name {
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .product-price {
-            font-size: 13px;
-            color: #c18862;
-        }
-
-        .add-to-cart-btn {
-            background: #e9cfbe;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 32px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-            color: #5c3823;
-        }
-
-        .add-to-cart-btn:hover {
-            background: #ac6844;
-            color: white;
-        }
-
-        .quiz-section {
-            background: #fffaf4;
-            border-radius: 48px;
-            padding: 30px;
-            margin: 45px 0;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
-            border: 1px solid #f3e3d8;
-        }
-
-        .question {
-            background: white;
-            border-radius: 28px;
-            padding: 18px;
-            margin-bottom: 20px;
-        }
-
-        .question p {
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .question label {
-            margin-left: 25px;
-            cursor: pointer;
-        }
-
-        button.primary {
-            background: #ac6844;
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        button.primary:hover {
-            background: #7e4d31;
-        }
-
-        .rec-products {
-            margin-top: 30px;
-            background: #fff6ef;
-            border-radius: 38px;
-            padding: 20px;
-        }
-
-        .rec-card {
+        /* توزيع عناصر الهيدر بشكل مرن ومتناسق أفقياً */
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
-            margin: 12px 0;
-            padding: 12px 20px;
-            border-radius: 60px;
-            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* تنسيق اسم المتجر الرئيسي */
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        /* صندوق غلاف حقل البحث */
+        .search-wrapper {
+            position: relative;
+            flex: 0 1 400px;
+        }
+
+        /* تصميم حقل البحث الاحترافي */
+        .search-bar {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            outline: none;
+        }
+
+        /* وضع أيقونة العدسة داخل حقل البحث في جهة اليمين */
+        .search-wrapper i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* قائمة اقتراحات البحث الذكي المنسدلة */
+        .autocomplete-suggestions {
+            position: absolute;
+            top: 100%; left: 0; right: 0;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 0 0 15px 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 999;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* خيارات الاقتراحات داخل القائمة */
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* تأثير تمرير الماوس فوق اقتراحات البحث */
+        .suggestion-item:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* تنسيق الجانب الأيسر للهيدر (أيقونات التواصل + زر السلة) */
+        .header-left-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* أزرار التواصل الاجتماعي */
+        .social-icons {
+            display: flex;
             gap: 12px;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .social-icons a {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        /* زر سلة المشتريات الدائري الأنيق */
+        .cart-icon-btn {
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* بنر فحص البشرة الترحيبي العريض */
+        .hero-section {
+            background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%);
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .hero-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* تصميم زر بدء فحص البشرة */
+        .quiz-btn {
+            background-color: var(--primary-color);
+            border: 2px solid var(--text-dark);
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-color);
+        }
+
+        /* حاويات الأقسام الرئيسية للموقع */
+        .section-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* عناوين الأقسام الرئيسية مع شريط جانبي فيروزى ملفت */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            border-right: 5px solid var(--primary-color);
+            padding-right: 15px;
+        }
+
+        /* شبكة عرض المنتجات - عمودين للموبايل وأربعة للشاشات الكبيرة */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* كرت عرض المنتج الاحترافي */
+        .product-card {
+            background: var(--white);
+            border: 1px solid #e2f2ef;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* صورة المنتج داخل الكرت */
+        .product-image {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(6px);
-            z-index: 1000;
+            height: 160px;
+            object-fit: contain;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .product-name {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 2px; /* صغرنا المسافة السفلية جداً */
+    height: auto; /* جعلنا الارتفاع تلقائي على حجم الكلمة */
+}
+
+       .product-desc {
+    font-size: 0.85rem; /* كبرنا الخط درجة بسيطة ليكون أوضح */
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    height: auto; /* جعلنا الارتفاع تلقائي ليظهر كل النص */
+    line-height: 1.5; /* ترتيب المسافة بين السطور لتكون مريحة */
+}
+
+        /* شارة ميزة أو فائدة المنتج التجارية */
+        .product-benefit {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #3e8e7e;
+            background: #eef8f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* التحكم بعناصر الكمية (+ / -) داخل الكرت بطريقة احترافية */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
+            background: #f1faf8;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        /* أزرار الزائد والناقص للكمية */
+        .qty-btn {
+            background: var(--primary-color);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* حقل عرض رقم الكمية الحالي */
+        .qty-input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* معلومات السعر والحجم */
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* زر إضافة المنتج إلى السلة */
+        .add-to-cart-btn {
+            background-color: var(--primary-color);
+            border: none;
+            width: 100%;
+            padding: 9px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-color);
+        }
+
+        /* شريط تصنيفات المنتجات المطور بشكل بيلز (Pills) فخم واحترافي */
+        .categories-tabs {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+        }
+
+        /* تصميم أزرار التبويب الفردية */
+        .tab-btn {
+            background: var(--white);
+            border: 1px solid var(--primary-color);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        /* نمط الزر النشط حالياً بالتصنيفات */
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--text-dark);
+            color: var(--primary-color);
+            border-color: var(--text-dark);
+        }
+
+        /* تصميم النوافذ المنبثقة (الاستبيان) */
+        .modal {
+            position: fixed;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 15px;
         }
 
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* محتوى صندوق الاستبيان الداخلي السكرول */
         .modal-content {
-            background: #fffcf9;
-            width: 90%;
-            max-width: 550px;
-            border-radius: 48px;
-            padding: 25px;
-            max-height: 80vh;
+            background: var(--white);
+            width: 100%;
+            max-width: 520px;
+            max-height: 85vh;
             overflow-y: auto;
-            direction: rtl;
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
         }
 
+        /* زر إغلاق نافذة الاستبيان */
+        .close-modal {
+            position: absolute;
+            top: 15px; left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* مجموعات حقول الإدخال بالفورم */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .form-group select, .form-group input[type="text"], .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        /* درج سلة المشتريات الجانبي الشريطي */
+        .cart-drawer {
+            position: fixed;
+            top: 0; bottom: 0; left: -400px;
+            width: 100%;
+            max-width: 400px;
+            background: var(--white);
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1005;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .cart-drawer.active {
+            left: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-items-container {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* كرت المنتج الفردي داخل سلة التسوق */
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #f0ddd0;
-            padding: 12px 0;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+            gap: 5px;
         }
 
-        .close-modal {
-            float: left;
-            font-size: 28px;
+        .cart-item-details {
+            flex: 1;
+            text-align: right;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: red;
             cursor: pointer;
+            font-size: 0.5rem;
         }
 
-        footer {
+        /* نافذة اللايت بوكس لتكبير صور المنتجات عند النقر */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        /* بطاقة الآية الكريمة والدعاء الروحاني أسفل الموقع */
+        .image-matched-spiritual-card {
+            background-color:var(--primary-color);
+            border-radius: 16px;
+            max-width: 91%;
+            margin: 40px auto 25px auto;
+            padding: 20px 25px;
             text-align: center;
-            padding: 30px;
-            color: #b28a6e;
-            border-top: 1px solid #f2e0d2;
-            margin-top: 40px;
         }
 
-        @media (max-width: 700px) {
-            .top-bar {
-                flex-direction: column;
-                text-align: center;
-            }
-            .groups-grid {
-                gap: 20px;
-            }
+        .image-matched-spiritual-card p {
+            color: #2A3B37;
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.8;
+        }
+
+        /* تذييل الصفحة الاحترافي الداكن لمعلومات المتجر الفرعي للزبون */
+        .image-matched-footer {
+            background-color: var(--primary-color);
+            color: #2A3B37;
+            border-radius: 25px 25px 0 0;
+            padding: 30px 20px;
+            text-align: center;
+            max-width: 98%;
+            margin: 0 auto;
+        }
+
+        .image-matched-footer p {
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    <div class="store-brand">
-        <input type="text" id="storeNameInput" value="متجر نور" maxlength="30">
-        <h1 id="storeTitle">متجر نور</h1>
+    <div class="top-blessing">
+        "تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ"
     </div>
-    <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i> فيسبوك</a>
-        <a href="https://www.instagram.com/noorabujafer92?igsh=MXd1dW9oMWtvdWdheQ==" target="_blank"><i class="fab fa-instagram"></i> انستغرام</a>
-        <a href="#"><i class="fab fa-twitter"></i> تويتر</a>
-        <a href="#"><i class="fab fa-whatsapp"></i> واتساب</a>
-    </div>
-    <div class="cart-icon" id="cartIcon">
-        🛒 سلة <span id="cartCountBadge" class="cart-count">0</span>
-    </div>
-</div>
 
-<div class="container">
-    <div class="section-title">✨ مجموعات العناية</div>
-    <div id="groupsContainer" class="groups-grid"></div>
+    <header>
+        <div class="header-container">
+            <a href="#" class="brand-name">noor store</a>
 
-    <div class="quiz-section">
-        <h2 style="margin-bottom: 20px;">📋 استبيان العناية المخصص</h2>
-        <div id="quizQuestions"></div>
-        <button class="primary" id="submitQuizBtn">✨ اقترح المنتجات المناسبة</button>
-        <div id="recommendationArea" class="rec-products">
-            <strong>🌟 المنتجات المقترحة لك :</strong>
-            <div id="recList"></div>
+            <div class="search-wrapper">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" class="search-bar" placeholder="ابحثي عن منتجكِ هنا..." oninput="handleSearch()">
+                <div id="autocompleteList" class="autocomplete-suggestions"></div>
+            </div>
+
+            <div class="header-left-actions">
+                <div class="social-icons">
+                    <a href="https://wa.me/972597010809" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/noorabujafer92?igsh=MXd1dW9oMWtvdWdheQ==" target="_blank" title="انستغرام"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="فيسبوك"><i class="fab fa-facebook"></i></a>
+                </div>
+                <button class="cart-icon-btn" onclick="toggleCart(true)">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h2 class="hero-title">قبل ما تختاري منتجاتك… اعملي فحص البشرة أولًا</h2>
+        <button class="quiz-btn" onclick="toggleQuizModal(true)">ابدئي الفحص المجاني</button>
+    </section>
+
+    <section class="section-container" id="recommendationsSection" style="display:none;">
+        <h3 class="section-title" style="border-right-color: var(--accent-gold);">✨ المنتجات الموصى بها لبشرتكِ بناءً على الفحص:</h3>
+        <div class="products-grid" id="recommendedProductsGrid"></div>
+    </section>
+
+    <section class="section-container">
+        <h3 class="section-title">المنتجات الأكثر مبيعاً 🔥</h3>
+        <div class="products-grid" id="bestSellersGrid"></div>
+    </section>
+
+    <div style="background-color: var(--primary-color); color: var(--text-dark); text-align:center; padding: 25px; font-weight:700; font-size:1.2rem;">
+        "وأما الذين أبيضَّت وجوههم ففى رحمه اللَّه هم فيها خالدون"
+    </div>
+
+    <section class="section-container">
+        <h3 class="section-title">تصفحي مجموعاتنا</h3>
+        <div class="categories-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all', this)">الكل</button>
+            <button class="tab-btn" onclick="filterCategory('skincare', this)">عناية بالبشرة</button>
+            <button class="tab-btn" onclick="filterCategory('haircare', this)">عناية بالشعر</button>
+            <button class="tab-btn" onclick="filterCategory('perfume', this)">العطور </button>
+                   <button class="tab-btn" onclick="filterCategory('bodycare', this)">العناية بالجسم</button>
+<button class="tab-btn" onclick="filterCategory('makeup', this)">المكياج</button>
+
+        </div>
+        <div class="products-grid" id="allProductsGrid"></div>
+    </section>
+
+    <div class="modal" id="quizModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleQuizModal(false)">&times;</span>
+            <h3 style="margin-bottom: 20px; text-align: center;">استبيان فحص البشرة المجاني 🩺</h3>
+            <form id="skinQuizForm" onsubmit="handleQuizSubmit(event)">
+                <div class="form-group">
+                    <label>1. العمر كم؟</label>
+                    <select required id="quizAge">
+                        <option value="">اختاري العمر</option>
+                        <option value="under18">تحت 18 سنة</option>
+                        <option value="18-25">18 - 25 سنة</option>
+                        <option value="26-35">26 - 35 سنة</option>
+                        <option value="over35">فوق 35 سنة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>2. ما هو نوع بشرتكِ؟</label>
+                    <select id="quizSkinType" required>
+                        <option value="">اختاري النوع</option>
+                        <option value="oily">دهنية</option>
+                        <option value="dry">جافة</option>
+                        <option value="mixed">مختلطة</option>
+                        <option value="sensitive">حساسة</option>
+                        <option value="all">عادية / جمبع الأنواع</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>3. شو فيها مشاكل؟</label>
+                    <select id="quizProblem" required>
+                        <option value="">حددي المشكلة الأساسية</option>
+                        <option value="acne">حب شباب وبثور ومسام ورؤوس سوداء</option>
+                        <option value="pigmentation">تصبغات وبقع باهتة وكلف</option>
+                        <option value="dryness">جفاف وقشور</option>
+                        <option value="wrinkles">تجاعيد خطوط تعبيرية وعلامات تقدم سن</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>4. الحالة الصحية العامة:</label>
+                    <input type="text" id="quizHealth" placeholder="مثال: جيدة، ممتازة.." required>
+                </div>
+                <div class="form-group">
+                    <label>5. هل يوجد حمل أو إرضاع؟</label>
+                    <select id="quizPregnancy" required>
+                        <option value="no">لا يوجد</option>
+                        <option value="yes">نعم، حامل أو مرضع</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>6. هل هناك تحسس من منتجات معينة؟</label>
+                    <input type="text" id="quizAllergy" placeholder="اكتبي نعم واذكريها، أو لا" required>
+                </div>
+                <div class="form-group">
+                    <label>7. يرجى إرفاق صورة مثبتة وواضحة للبشرة (اختياري):</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>8. من متى الها المشكلة عندك؟</label>
+                    <input type="text" id="quizDuration" placeholder="مثال: منذ شهر، منذ سنة.." required>
+                </div>
+                <button type="submit" class="quiz-btn" style="width:100%; margin-top:10px;">إظهار النتيجة والمنتجات المناسبة</button>
+            </form>
         </div>
     </div>
-</div>
 
-<div id="cartModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" id="closeModalBtn">&times;</span>
-        <h2>🛍️ سلة التسوق</h2>
-        <div id="cartItemsList"></div>
-        <hr>
-        <h3>الإجمالي: <span id="cartTotal">0</span> ₪</h3>
-        <button class="primary" id="checkoutBtn" style="width:100%; margin-top:15px;">💳 إتمام الشراء (تجريبي)</button>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>سلة المشتريات الخاصة بكِ 🛍️</h3>
+            <span style="cursor:pointer; font-size:1.5rem;" onclick="toggleCart(false)">&times;</span>
+        </div>
+        <div class="cart-items-container" id="cartItemsList"></div>
+        
+        <div style="border-top: 2px solid var(--primary-color); padding-top:15px; margin-top:10px;">
+            <p style="display:flex; justify-content:space-between; font-weight:800; font-size:1.1rem; margin-bottom:15px;">
+                <span>المجموع الكلي:</span>
+                <span id="cartTotalSum">0</span> شيكل
+            </p>
+            
+            <form id="checkoutForm" onsubmit="handleCheckout(event)">
+                <h4 style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:5px;">معلومات التوصيل والطلب</h4>
+                <div class="form-group">
+                    <input type="text" id="custName" placeholder="الاسم الكامل باللغة العربية" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="custPhone" placeholder="رقم الجوال (مثال: 059XXXXXXX)" required>
+                </div>
+                <div class="form-group">
+                    <select id="custArea" required>
+                        <option value="">اختر المدينة / المنطقة</option>
+                        <option value="رام الله والبيرة">رام الله والبيرة</option>
+                        <option value="نابلس">نابلس</option>
+                        <option value="الخليل">الخليل</option>
+                        <option value="جنين">جنين</option>
+                        <option value="طولكرم">طولكرم</option>
+                        <option value="قلقيلية">قلقيلية</option>
+                        <option value="بيت لحم">بيت لحم</option>
+                        <option value="أريحا">أريحا</option>
+                        <option value="سلفيت">سلفيت</option>
+                        <option value="طوباس">طوباس</option>
+                        <option value="الداخل المحتل">الداخل المحتل</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="custPayment" required>
+                        <option value="">اختر طريقة الدفع</option>
+                        <option value="الدفع عند الاستلام">الدفع عند الاستلام</option>
+                        <option value="تحويل بنكي">تحويل بنكي</option>
+                    </select>
+                </div>
+                <button type="submit" class="add-to-cart-btn" style="padding:12px; font-size:1rem;">تأكيد وإرسال الطلب عبر الواتساب</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<footer>© 2025 متجر نور للعناية – بشرة صحية وشعر مثالي</footer>
+    <div class="lightbox" id="imageLightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="تكبير">
+    </div>
 
-<script>
-    // ========== قاعدة بيانات المنتجات بصور حقيقية لمنتجات العناية ==========
-    const productsDatabase = [
-        { id: 1, name: "مرطب الكولاجين العميق", category: "العناية بالوجه", price: 89, skinType: "جافة", hairType: null, concern: "جفاف", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop" },
-        { id: 2, name: "غسول منعش للبشرة الدهنية", category: "العناية بالوجه", price: 55, skinType: "دهنية", hairType: null, concern: "زيوت", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=200&h=200&fit=crop" },
-        { id: 3, name: "سيروم فيتامين سي المشرق", category: "مضاد للشيخوخة", price: 149, skinType: "عادية", hairType: null, concern: "بهتان", img: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=200&h=200&fit=crop" },
-        { id: 4, name: "شامبو مرطب للشعر الجاف", category: "العناية بالشعر", price: 67, skinType: null, hairType: "جاف", concern: "هيشان", img: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop" },
-        { id: 5, name: "بلسم منشط للشعر الدهني", category: "العناية بالشعر", price: 72, skinType: null, hairType: "دهني", concern: "لمعان زائد", img: "https://images.unsplash.com/photo-1621609764095-b32bbe35e1e8?w=200&h=200&fit=crop" },
-        { id: 6, name: "كريم ليلي مضاد للتجاعيد", category: "مضاد للشيخوخة", price: 199, skinType: "متقدمة", hairType: null, concern: "تجاعيد", img: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=200&h=200&fit=crop" },
-        { id: 7, name: "جل ترطيب للبشرة المختلطة", category: "الترطيب", price: 78, skinType: "مختلطة", hairType: null, concern: "توازن", img: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=200&h=200&fit=crop" },
-        { id: 8, name: "مصل إصلاح الشعر التالف", category: "العناية بالشعر", price: 112, skinType: null, hairType: "تالف", concern: "تقصف", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=200&h=200&fit=crop" },
-        { id: 9, name: "واقي شمسي لبشرة حساسة", category: "العناية بالوجه", price: 95, skinType: "حساسة", hairType: null, concern: "حماية", img: "https://images.unsplash.com/photo-1585254056360-d5c085ee37a4?w=200&h=200&fit=crop" },
-        { id: 10, name: "ماسك طيني للبشرة", category: "الترطيب", price: 45, skinType: "دهنية", hairType: null, concern: "زيوت", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&h=200&fit=crop" },
-        { id: 11, name: "كريم عين للانتفاخات", category: "مضاد للشيخوخة", price: 129, skinType: "عادية", hairType: null, concern: "بهتان", img: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=200&h=200&fit=crop" },
-        { id: 12, name: "زيت الأرغان للشعر", category: "العناية بالشعر", price: 88, skinType: null, hairType: "جاف", concern: "هيشان", img: "https://images.unsplash.com/photo-1585155770447-2f66e6a6c33a?w=200&h=200&fit=crop" }
-    ];
+    <div class="image-matched-spiritual-card">
+        <p class="main-prayer">🙌 اللهم اجعل لي من اسمك النور نوراً يضيء بشرتي وجسدي... اللهم ضاعف لي جمالي وجاذبيتي.. رددي اسم الله "الخالق البديع" 🙌</p>
+    </div>
 
-    const productGroups = {
-        "العناية بالوجه": productsDatabase.filter(p => p.category === "العناية بالوجه"),
-        "العناية بالشعر": productsDatabase.filter(p => p.category === "العناية بالشعر"),
-        "الترطيب": productsDatabase.filter(p => p.category === "الترطيب"),
-        "مضاد للشيخوخة": productsDatabase.filter(p => p.category === "مضاد للشيخوخة")
-    };
+    <footer class="image-matched-footer">
+        <p>✨ متجر نور للجمال - جنين، دوار السينما، مقابل حلويات السهل الأخضر</p>
+        <p>🕒 ساعات العمل: الاحد - الخميس 10:00 ص ← 6:00 م (الجمعة والسبت مغلق)</p>
+        <p>📍 التوصيل لجميع محافظات الضفة الغربية والداخل المحتل</p>
+        <p>💳 طرق الدفع: عند الاستلام أو تحويل بنكي</p>
+        <p>💖 Noor Store - جمالك يبدأ من هنا 💖</p>
+    </footer>
 
-    let cart = [];
-    function loadCart() {
-        const saved = localStorage.getItem("nourCart");
-        if (saved) cart = JSON.parse(saved);
-        else cart = [];
-        updateCartUI();
-    }
-    function saveCart() {
-        localStorage.setItem("nourCart", JSON.stringify(cart));
-        updateCartUI();
-    }
-    function updateCartUI() {
-        const count = cart.reduce((sum, i) => sum + i.quantity, 0);
-        document.getElementById("cartCountBadge").innerText = count;
-        renderCartModal();
-    }
-    function addToCart(product, quantity = 1) {
-        const existing = cart.find(item => item.id === product.id);
-        if (existing) existing.quantity += quantity;
-        else cart.push({ ...product, quantity: quantity });
-        saveCart();
-        alert(`✨ تم إضافة ${product.name} إلى السلة`);
-    }
-    function removeFromCart(productId) {
-        cart = cart.filter(item => item.id !== productId);
-        saveCart();
-        renderCartModal();
-    }
-    function updateQuantity(productId, newQty) {
-        if (newQty <= 0) {
-            removeFromCart(productId);
-            return;
+    <script>
+        // مصفوفة البيانات الكاملة الخالية تماماً من التكرار والمصنفة والمربوطة بالاستبيان بدقة 100%
+        const productsData = [
+            // 1-13 منتجات كالييل (Calliel)
+            { id: 1, name: "تونر كالييل بحمض الجليكوليك لتقشير البشرة", category: "skincare", price: 110, use: "تجديد خلايا البشرة، إزالة الجلد الميت وعلاج التصبغات الباهتة", benefit: "نضارة فائقة وتفتيح ملحوظ", size: "200 مل", tag: "bestseller", skinType: "mixed", issue: "pigmentation", img: "https://calliel.com.tr/cdn/shop/files/Glycolic-Acid-Tonic1.jpg?v=1767689915&width=848" },
+
+            { id: 2, name: "منظف كالييل الرغوي الفقاعي للرؤوس السوداء", category: "skincare", price: 125, use: "تنظيف عميق جداً للمسام والتخلص التام من الرؤوس السوداء والزهم", benefit: "مسام نقية ومظهر صافي", size: "150 مل", tag: "bestseller", skinType: "oily", issue: "acne", img: "https://calliel.com.tr/cdn/shop/files/Bubble-Blackhead1.jpg?v=1767690037&width=848" },
+
+            { id: 3, name: "سيروم كالييل المركز المهدئ وعلاجي للشوائب", category: "skincare", price: 130, use: "علاج عيوب البشرة المتهيجة، تنقية آثار الحبوب وتنظيم الإفرازات", benefit: "بشرة موحدة خالية من العيوب", size: "30 مل", tag: "normal", skinType: "sensitive", issue: "acne", img: "https://calliel.com.tr/cdn/shop/files/blemish-2.jpg?v=1767689972&width=540" },
+
+            { id: 4, name: "واقي شمس كالييل الملون ذو الحماية العالية SPF 50+", category: "skincare", price: 120, use: "حماية قصوى من الشمس مع تغطية فونديشن خفيفة وطبيعية توحد اللون", benefit: "حماية ونضارة يومية بلمسة واحدة", size: "50 مل", tag: " ", skinType: "all", issue: "pigmentation", img: "https://calliel.com.tr/cdn/shop/files/Renkli-Gunes-Kremi1_e6b98830-93b2-4e35-bf0b-864369914445.jpg?v=1767690073&width=848" },
+
+            { id: 5, name: "كريم عناية بالبشرة وترميمها", category: "skincare", price: 65, use: " إصلاح حاجز البشرة ,تهدئة التهيج والاحمرار ,موازنة لون البشرةوتوحيدها مضاد لعلامات التقدم بالعمر", benefit: "إصلاح حاجز البشرة", size: "50 مل", tag: "normal", skinType: "all", issue: "dryness", img: "https://calliel.com.tr/cdn/shop/files/Tint-Repair-1_8bc5766c-f586-4e03-8471-623b1d01484d.jpg?v=1779264606&width=848" },
+
+            { id: 6, name: "غسول كالييل الرغوي الفقاعي المهدئ لحب الشباب", category: "skincare", price: 115, use: "تطهير عميق للبشرة المعرضة للحبوب والبثور دون التسبب بجفافها", benefit: "يجفف الحبوب بفعالية وسرعة", size: "150 مل", tag: "normal", skinType: "oily", issue: "acne", img: "https://calliel.com.tr/cdn/shop/files/Bubble-Blemish1.jpg?v=1767689972&width=848" },
+
+            { id: 7, name: "تونر كالييل بحمض الكوجيك الفعّال لإزالة الكلف التصبغات", category: "skincare", price: 110, use: "تفتيح البقع الداكنة المستعصية، كلف الشمس، وآثار حب الشباب القديمة", benefit: "توحيد مذهل ومشرق للون البشرة", size: "200 مل", tag: "normal", skinType: "all", issue: "pigmentation", img: "https://calliel.com.tr/cdn/shop/files/Kojic-Acid-Tonic1.jpg?v=1767690173&width=848" },
+
+            { id: 8, name: "تونر كالييل PHA لتقشير لطيف للبشرة الحساسة", category: "skincare", price: 110, use: "تقشير سطحي لطيف مخصص للبشرات الشديدة التحسس لإزالة الخلايا الميتة", benefit: "نعومة فائقة بدون أي تهيج", size: "200 مل", tag: "normal", skinType: "sensitive", issue: "pigmentation", img: "https://calliel.com.tr/cdn/shop/files/PHA-Tonic1.jpg?v=1767690236&width=848" },
+
+            { id: 9, name: "تونر كالييل بحمض المانديليك لتنقية المسام وتفتيحها", category: "skincare", price: 110, use: "مقشر أحماض لطيف ممتاز للمسام الواسعة وتصفية مظهر البشرة المختلطة", benefit: "شد المسام وزيادة نضارة الوجه", size: "200 مل", tag: "normal", skinType: "mixed", issue: "acne", img: "https://calliel.com.tr/cdn/shop/files/Mandelic-Acid-Tonic1.jpg?v=1767690207&width=848" },
+
+            { id: 10, name: "تونر كالييل بحمض الساليسيليك الفعّال لحب الشباب", category: "skincare", price: 110, use: "يتغلغل لعمق المسام ليذيب الدهون والأوساخ، مانعاً تشكل البثور الجديدة", benefit: "تصفية تامة للبشرة الدهنية", size: "200 مل", tag: "bestseller", skinType: "oily", issue: "acne", img: "https://calliel.com.tr/cdn/shop/files/Salicylic-Acid-Tonic1.jpg?v=1767690004&width=980" },
+
+            { id: 11, name: "تونر كالييل بحليب الأرز المغذي والمرطب المكثف", category: "skincare", price: 105, use: "ترطيب ومكافحة الجفاف الشديد والخشونة للبشرة الباهتة بمستخلص الأرز", benefit: "ملمس ناعم كالحرير ونضارة فورية", size: "200 مل", tag: "normal", skinType: "dry", issue: "dryness", img: "https://calliel.com.tr/cdn/shop/files/Rice-Milk-Tonik1.jpg?v=1767689847&width=848" },
+
+            { id: 12, name: "واقي شمس كالييل المرطب والواقي اليومي الشامل", category: "skincare", price: 110, use: "حماية واسعة النطاق من أشعة الشمس الضارة مع حماية حاجز البشرة الطبيعي", benefit: "مقاوم للتعرق ولا يترك علامات بيضاء", size: "50 مل", tag: "normal", skinType: "all", issue: "all", img: "https://calliel.com.tr/cdn/shop/files/Gunes-Kremi1.jpg?v=1767689941&width=848" },
+
+            { id: 13, name: "واقي شمس كالييل الخفي الشفاف تماماً (Unseen)", category: "skincare", price: 120, use: "قوام جل شفاف خفيف للغاية يمتص فوراً، مثالي كأساس ومثبت للمكياج", benefit: "مظهر غير لامع ومخملي ساحر", size: "50 مل", tag: "bestseller", skinType: "mixed", issue: "all", img: "https://calliel.com.tr/cdn/shop/files/Unseen-Sunscreen1_399c1740-8227-4753-b0c9-0e5d0095b440.jpg?v=1767690364&width=848" },
+
+            // 14-19 منتجات هيلو بيوتي سكواد (Hello Beauty Squad)
+            { id: 14, name: "كريم هيمالايا المغذي للبشرة", category: "skincare", price: 95, use: "هذا الكريم مخصص لترطيب وتغذية البشرة، حيث يحتوي على مكونات طبيعية تساعد على الحفاظ على نعومة الجلد وحمايته من الجفاف", benefit: "إشراقة ونقاء فوري", size: "150 مل", tag: "normal", skinType: "sensitive", issue: "pigmentation", img: "https://www.bing.com/th/id/OIP.kwNbc-AV610oTmM-s4a80gHaHa?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" },
+
+            { id: 15, name: " واقي الشمس YC Sun Screen SPF 50 PA+", category: "skincare", price: 115, use: " يوفر حماية قوية ضد الأشعة فوق البنفسجية UVB المسببة لحروق الشمس، وPA+ للحماية من الأشعة UVA التي تسبب الشيخوخة المبكرة للبشرة", benefit: " قوام خفيف وسريع الامتصاص ومناسب لجميع أنواع البشرة", size: "30 مل", tag: "normal", skinType: "oily", issue: "acne", img: "https://www.bing.com/th/id/OIP.DYpYii1Lzfi6e7NnSVHJUQHaHa?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" },
+
+            { id: 16, name: "زبدة ترطيب البطن  لعلاج علامات التمدد", category: "bodycare", price: 40, use: "مصمم خصيصًا للمساعدة في تحسين مرونة الجلد وتقليل مظهر علامات التمدد ، خاصة أثناء الحمل أو عند تغيّر الوزن", benefit: "ترطيب عميق وتغذية البشرة.", size: "50 مل", tag: "normal", skinType: "all", issue: "wrinkles", img: "https://www.bing.com/th/id/OIP.H8Cmk89KwAvIkXP8wFTX7AAAAA?w=180&h=248&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" },
+
+            { id: 17, name: "كريم بالمرز بزبدة الكاكاو لمنطقة الصدر", category: "bodycare", price: 40, use: " كريم مخصص للعناية بالبشرة في منطقة الصدر، يحتوي على زبدة الكاكاو وفيتامين E بالإضافة إلى الكولاجين والإيلاستين وزبدة الشيا.", benefit: "ترطيب وشد طبيعي ونعومة مثالية", size: "30 مل", tag: "normal", skinType: "dry", issue: "dryness", img: "https://thfvnext.bing.com/th/id/OIP.uS9BGTuT7iFLdoh0-ByaGwHaHa?w=219&h=219&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3" },
+
+            { id: 18, name: "غسول الجيلي المنظف واللطيف من هيلو بيوتي سكواد", category: "skincare", price: 90, use: "تنظيف متوازن يزيل الأوساخ والمكياج بلطف تام مع الحفاظ على ترطيب البشرة", benefit: "انتعاش مريح دون شد أو جفاف", size: "150 مل", tag: "bestseller", skinType: "sensitive", issue: "all", img: "https://tse1.mm.bing.net/th/id/OIP.30z6NOh2Lz1365IKRKbdpwHaJ4?cb=thfvnextfalcon2&rs=1&pid=ImgDetMain&o=7&rm=3" },
+
+
+            // 20-25 منتجات سكين ماستر (Skinmaster) - تم دمجها ومنع التكرار
+            { id: 20, name: "سيروم سكين ماستر أربوتين ونياكيناميد للتفتيح المزدوج", category: "skincare", price: 135, use: "علاج التصبغات، إزالة آثار الحبوب المستعصية، مضاف إليه حمض الجليكوليك", benefit: "توحيد جبار للون وإشراقة وردية", size: "20 مل", tag: "bestseller", skinType: "all", issue: "pigmentation", img: "https://cdn.dsmcdn.com/ty1580/prod/QC/20241005/21/54214c60-ee10-3ba4-b459-7bfc5516a3c6/1_org_zoom.jpg" },
+            { id: 21, name: "لوشن ترطيب وتفتيح للجسم", category: "bodycare", price: 140, use: " رائحة عطرية منعشة تدوم لفترة طويلة", benefit: "بشرة شابة مشدودة ونضرة جداً", size: "30 مل", tag: "normal", skinType: "all", issue: "wrinkles", img: "https://tse1.mm.bing.net/th/id/OIP.GIYEsHQXId7xzZhfI_6sLAHaHa?cb=thfc1falcon2&w=500&h=500&rs=1&pid=ImgDetMain&o=7&rm=3" },
+
+            { id: 22, name: "غسول لعلاج حب الشباب", category: "skincare", price: 130, use: "مضاد أكسدة قوي ومشرق للوجه، يحتوي على نياكيناميد وحمض الهيالورونيك", benefit: "إضاءة ونضارة ومكافحة بهتان الجلد", size: "20 مل", tag: "normal", skinType: "all", issue: "pigmentation", img: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-loth224c36kr7c" },
+
+            { id: 23, name: "لوشن الجسم من بالمرز برائحة زهرة الزنبق المائي", category: "bodycare", price: 125, use: "يحتوي على مكونات طبيعية مثل زهرة الزنبق المائي، فيتامين E، ومستخلص الفطر الأبيض", benefit: "يساعد على توحيد لون البشرة ومنحها مظهراً متألقاً ومتوازناً", size: "30 مل", tag: "normal", skinType: "sensitive", issue: "acne", img: "https://http2.mlstatic.com/D_NQ_NP_831930-MLU73338608204_122023-O.webp" },
+            { id: 24, name: "كريم تفتيح وتوحيد لون البشرة ", category: "skincare", price: 115, use: "  يحتوي على فيتامين E و5% نياسيناميد، وخالٍ من الهيدروكينون", benefit: "استهداف البقع الداكنة وتوحيد لون البشرة", size: "50 مل", tag: "normal", skinType: "all", issue: "dryness", img: "https://tse1.mm.bing.net/th/id/OIP.dOpzyfLbpXIgbEY8gLVgkgHaHa?cb=thfc1falcon2&w=1200&h=1200&rs=1&pid=ImgDetMain&o=7&rm=3" },
+
+            { id: 25, name: "سيروم سكين ماستر BHA لتضييق المسام وإزالة الرؤوس السوداء", category: "skincare", price: 130, use: "منع تشكل الأكني والرؤوس المزعجة بمساعدة النياكيناميد والـ BHA", benefit: "مسام ضيقة ومظهر نقي ناعم", size: "30 مل", tag: "normal", skinType: "oily", issue: "acne", img: "https://flavus.com/cdn/shop/files/skinmaster-gozenek-sikilastirici-siyah-nokta-ve-akne-olusumunu-gidermeye-yardimci-bakim-serumu-bha-b3-ha-8683434733045-659808_grande.jpg?v=1711058222" },
+
+            // 26-28 العناية بالجسم والمنظفات الطبية الأخرى
+            { id: 26, name: "لوشن فازلين الإشراقة اليومية وتفتيح الجسم المكثف", category: "bodycare", price: 75, use: "ترطيب عميق وتوحيد وتفتيح لون بشرة الجسم واليدين مع حماية يومية", benefit: "بشرة جسم حريرية ومشرقة وعطرة", size: "400 مل", tag: "", skinType: "all", issue: "pigmentation", img: "https://media.karousell.com/media/photos/products/2023/5/14/vaseline_daily_brightening_lot_1684081679_78dc3862.jpg" },
+
+            { id: 27, name: "غسول بان أوكسيل الرغوي الطبي لحب الشباب Benzoyl Peroxide", category: "skincare", price: 140, use: "الغسول رقم 1 الموصى به من أطباء الجلد لقتل بكتيريا الحبوب وتنظيف الجسم والوجه", benefit: "قضاء نهائي وسريع على حب الشباب", size: "156 جم", tag: "bestseller", skinType: "oily", issue: "acne", img: "https://hebronnutrition.com/cdn/shop/files/panoxyl_foaming_new_label_719hqT1t0KL._SL1500_1498x1498.jpg?v=1756157023" },
+
+            { id: 28, name: "غسول شوكوبوتسو النسائي للمناطق الحساسة (Everyday Confidence)", category: "bodycare", price: 55, use: "تطهير يومي لطيف جداً يمنح الانتعاش والثقة طوال اليوم ويحافظ على مستويات الـ pH", benefit: "حماية يومية ناعمة ومنعشة برائحة فخمة", size: "250 مل", tag: "normal", skinType: "all", issue: "all", img: "https://www.thaibynature.com/export/image/cache/catalog/wholesale/health-beauty/feminine-care/shokubutsu-feminine-cleansin/everyday-confidence-630x420.jpg" },
+
+            // 29-34 منتجات العناية بالشعر (Haircare)
+            { id: 29, name: "شامبو هيمالايا العشبي لإصلاح الشعر الجاف والتالف", category: "haircare", price: 40, use: "تغذية عميقة للشعر المتعب والمتقصف بمستخلصات البروتين الطبيعية ليعيد الحيوية", benefit: "شعر رطب، قوي ولامع من الجذور", size: "400 مل", tag: "normal", skinType: "all", issue: "all", img: "https://img02.zdravnitza.com/6249-home_default/shampoan-za-suha-i-iztoshtena-kosa-himalaya-400-ml.jpg" },
+            { id: 30, name: "شامبو هيمالايا لتكثيف الشعر وزيادة حيوية وحجم الخصلات", category: "haircare", price: 40, use: "يعطي كثافة ومظهر ممتلئ وصحي للشعر الخفيف والناعم بدون إثقال خصلاتك", benefit: "شعر كثيف، حيوي وذو مظهر جذاب", size: "400 مل", tag: "normal", skinType: "all", issue: "all", img: "https://himalayawellness.eu/cdn/shop/files/Volume-_-Thickness-Shampoo-Front.jpg?v=1708496043&width=1080" },
+            { id: 31, name: "شامبو هيمالايا النعومة واللمعان الفائق للشعر الباهت", category: "haircare", price: 40, use: "ينعم ألياف الشعر الخشن والمتطاير، ويضفي لمعاناً كريستالياً ساحراً", benefit: "انسيابية فائقة وملمس حريري", size: "400 مل", tag: "normal", skinType: "all", issue: "all", img: "https://himalayawellness.my/cdn/shop/products/Shampoo-Softness-_-Shine-400ml.png?v=1653544638&width=1080" },
+
+            { id: 32, name: "بخاخ عناية سائل للشعر بالكيراتين", category: "haircare", price: 85, use: "بخاخ سائل يفك تشابك الخصلات فوراً و مناسب للشعر الجاف أو المتضرر من الصبغات والسشوار", benefit: "نعومة فورية ولمعان طبيعي خلاب", size: "200 مل", tag: "bestseller", skinType: "all", issue: "all", img: "https://www.ogempharma.com/uploads/urunler/urban-care-argan-oil-sivi-sac-bakim-kremi-200-ml-5570.jpg" },
+
+            { id: 33, name: "ماسك فانوﻻ (Fanola Smooth Care) الاحترافي لتمليس وفرد الشعر", category: "haircare", price: 120, use: "قناع صالونات غني بقطرات القطن، يسهل فرد الشعر المجعد ويقضي على النفشة تماماً", benefit: "نعومة فائقة وتمليس يدوم طويلاً", size: "500 مل", tag: "bestseller", skinType: "all", issue: "all", img: "https://www.esteto.bg/static/images/produse/77795/maska-za-izpravyane-na-kosata-fanola-smooth-care-straightening-mask-500ml-1.jpg" },
+
+            { id: 34, name: "شامبو إيريس (Eriis) الإيطالي المطور والمقوي لخصلات الشعر ", category: "haircare", price: 110, use: "شامبو علاجي متطور يغذي بصيلات الشعر ويحارب التساقط الموسمي ويعيد بناء الفروة", benefit: "شعر قوي وسميك ومقاوم للتساقط", size: "200 مل", tag: "normal", skinType: "all", issue: "all", img: "https://th.bing.com/th/id/R.882e305ca8af069555f1fe73790f6846?rik=rCLNILbgZgjFpA&riu=http%3a%2f%2fwww.i-health.ae%2fcdn%2fshop%2fproducts%2fEriis-Repairing-Energizing-Shampoo-Women.jpg%3fv%3d1590051610&ehk=1pqoQMD3wshCI%2f8NFll8mclryNfp%2fA5Ffe%2fQtpKGQps%3d&risl=&pid=ImgRaw&r=0" },
+
+            // 35-40 المنتجات الجمالية الفخمة والمكملة من بقية روابطك
+            { id: 35, name: "معطر وبودي ميست مون لينجري (Moon Lingerie)", category: "perfume", price: 95, use: "رذاذ عطري فاخر وثابت للجسم يجمع بين النوتات الزهرية والمسك الدافئ الأنيق", benefit: "رائحة ساحرة وجاذبية تدوم طوال اليوم", size: "250 مل", tag: " ", skinType: "all", issue: "all", img: "https://moon-lingerie.com/wp-content/uploads/2024/03/35-1.jpg" },
+
+            { id: 36, name: " بخاخ شعر سائل (Leave-in) يحتوي على حمض الهيالورونيك والكولاجين،", category: "haircare", price: 90, use: "يساهم في تعزيز مرونة وقوة الشعر و يساعد على الاحتفاظ بالرطوبة داخل الشعر و يجعل الشعر أكثر نعومة ويسهّل تمشيطه", benefit: "  ترطيب الشعر تقوية الشعر حماية من أشعة الشمس تسهيل التصفيف", size: "100 مل", tag: "normal", skinType: "all", issue: "pigmentation", img: "https://tse3.mm.bing.net/th/id/OIP.5mUx1W04XyJ8CUloaidsDgHaLH?cb=thfc1falcon2&w=592&h=889&rs=1&pid=ImgDetMain&o=7&rm=3" },
+
+            { id: 37, name: "بلسم شعر بزيت الأرغان", category: "haircare", price: 80, use: "يُستخدم هذا البلسم بعد غسل الشعر بالشامبو للمساعدة في ترطيب الشعر، تغذيته، وتسهيل تسريحه. ", benefit: "إصلاح الشعر التالف، إضافة اللمعان، وتقليل التجعد.", size: "150 مل", tag: "normal", skinType: "all", issue: "pigmentation", img: "https://tse3.mm.bing.net/th/id/OIP.7mtEWcPdsroH0VDgLfmuaQHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" },
+            { id: 38, name: "ماسك الشعر بزيت الأرغان", category: "haircare", price: 110, use: "يُستخدم لترطيب الشعر بعمق وتغذيته. زيت الأرغان غني بالأحماض الدهنية وفيتامين E", benefit: "وزيادة لمعان ونعومة الشعر.", size: "200 مل", tag: "normal", skinType: "all", issue: "dryness", img: "https://tse4.mm.bing.net/th/id/OIP.26t1D6jjX96nsL1t4cIhDQHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" },
+            { id: 39, name: "بخاخ شعر سائل بزيت الأرغان ", category: "haircare", price: 85, use: " يعمل على تغذية الشعر، حمايته من أشعة الشمس  وتقليل التقصف", benefit: " تسهيل التصفيف ومنح الشعر لمعانًا", size: "50 مل", tag: "normal", skinType: "all", issue: "pigmentation", img: "https://images.migrosone.com/sanalmarket/product/34346295/34346295-3d4a2b-1650x1650.jpg" },
+
+  { id: 40, name: "منتج عناية بالشعر بزيت المونوي والإيلانغ إيلانغ", category: "haircare", price: 50, use: "  ستخدم عادةً على الشعر الجاف أو المبلل بدون شطف، ليساعد في تقليل الجفاف والتقصف خاصة في فصل الصيف أو عند التعرض للشمس والبحر.", benefit: "ايعمل على ترطيب الشعر وحمايته من أضرار أشعة الشمس بفضل احتوائه على فلتر للأشعة فوق البنفسجية", size: "250 مل", tag: "normal", skinType: "sensitive", issue: "dryness", img: "https://cdn1.ozone.ru/s3/multimedia-1-m/c600/7047818374.jpg" },
+
+{ 
+  id: 41, 
+  name: "واقي شمس La Roche-Posay Anthelios UVMune 400 SPF 50+", 
+  category: "skincare", // أو haircare أو perfume
+  price: 120, // السعر بدون كتابة كلمة شيكل
+  use: "طريقة الاستخدام أو وظيفة المنتج هنا", 
+  benefit: "الفائدة الأساسية للمنتج", 
+  size: "50 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all", // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: "", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.WqeMD3AZ_-1dUeQ0ns8OOQAAAA?w=180&h=171&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" },
+
+ {id: 42, 
+  name: "كريم واقي الشمس بيير كاردان SPF 50+", 
+  category: "skincare", // أو haircare أو perfume
+  price: 70, // السعر بدون كتابة كلمة شيكل
+  use: "حماية قوية ضد الأشعة فوق البنفسجية بالاضافة الى ترطيب البشرة بفضل احتوائه على فيتامين E.", 
+  benefit: "تقليل خطر التصبغات والبقع الداكنة الناتجة عن التعرض للشمس.", 
+  size: "75 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all", // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: "", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse4.mm.bing.net/th/id/OIP.Y_o5QkLH84ttUQ3WPgarTwHaIt?cb=thfc1falcon2&pid=ImgDet&w=179&h=210&c=7&dpr=1%D9%AB3&o=7&rm=3" },
+
+{ 
+  id:43, 
+  name: "جل فوتوبلوك SPF 50 يوفر حماية واسعة النطاق من الشمس", 
+  category: "skincare", // أو haircare أو perfume
+  price: 60, // السعر بدون كتابة كلمة شيكل
+  use: "حماية شاملة من الشمس مع الحفاظ على مسام الجلد مفتوحة، والتحكم في إفراز الزيت، ودعم صحة البشرة المعرضة لحب الشباب.", 
+  benefit: "حماية مضادة للأكسدة بالاضافة الى حماية من الشيخوخة المبكرة والتلف الطويل الأمد للبشرة", 
+  size: "100 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "oily", // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: "", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.H1fxh4PS9G3YGNE24f7O4gAAAA?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+{ 
+  id:44, 
+  name: "كريم CC من Topface Natural Glow ", 
+  category: "makeup", // أو haircare أو perfume
+  price: 60, // السعر بدون كتابة كلمة شيكل
+  use: "عامل حماية عالي SPF 50+ PA++++: يوفر حماية قوية من أشعة الشمس الضارة تصحيح لون البشرة يساعد على توحيد لون البشرة وإخفاء التصبغات.", 
+  benefit: "تغطية كاملة يخفي العيوب والبقع والشوائب بشكل فعّال", 
+  size: "30 مل", 
+  tag: "bestseller", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all", // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: "", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse4.mm.bing.net/th/id/OIP.mK0Q7ST2_eqWSXvo_3rA0gAAAA?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+
+{ 
+  id:45, 
+  name: "منتج لتنظيف البشرة وإزالة المكياج بلطف، خاصة للبشرة الجافة والحساسة ", 
+  category: "makeup", // أو haircare أو perfume
+  price: 30, // السعر بدون كتابة كلمة شيكل
+  use: "ينظف البشرة من الأوساخ والشوائب ويزيل المكياج من الوجه والعينين بلطف", 
+  benefit: "يزيل المكياج والشوائب بشكل فعّال", 
+  size: "250 مل", 
+  tag: "", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "sensitive", // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: "", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://cdn1.costatic.com/img/product/750x1000/5cf8c1924aeb6/laboratoire-acm-sensitelial-p39057.jpg" 
+},
+
+{ 
+  id: 46, 
+  name: "ميسيلار منظف ومنقي للبشرة، مخصص للبشرة المختلطة أو الدهنية", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 35, // السعر بدون كتابة كلمة شيكل
+  use: "تنظيف البشرة من الأوساخ والشوائب إزالة المكياج بلطف من الوجه والعينين تنظيم إفراز الدهون الزائدة في البشرة", 
+  benefit: "ينقي المسام ويساعدة في منع ظهور الحبوب", 
+  size: "250 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "oily, mixed" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse4.mm.bing.net/th/id/OIP.DdLPrbE8XNv_38ToWl1IvAHaLH?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+{ 
+  id: 47, 
+  name: "محلول ميسيلاري منقي", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 35, // السعر بدون كتابة كلمة شيكل
+  use: "يُستخدم لتنظيف البشرة وإزالة الأوساخ والزيوت الزائدة والمكياج بلطف، دون الحاجة للشطف بالماء", 
+  benefit: "ينظف البشرة بعمق ويزيل الشوائب والزيوت الزائدة ولطيف على البشرة لا يسبب جفافًا أو تهيجًا", 
+  size: "250 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "oily, mixed" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.101m7jQ4SASeJbBaM3DMaAHaHa?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+{ 
+  id: 48, 
+  name: "غسول رغوي للوجه لتصحيح البقع الداكنة", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 25, // السعر بدون كتابة كلمة شيكل
+  use: "يستخدم لغسل الوجه يوميًا، حيث يعمل على إزالة الشوائب والزيوت الزائدة بلطف، مع المساعدة في تفتيح البشرة وتحسين إشراقتها. مناسب للبشرة العادية إلى الحساسة.", 
+  benefit: "يعمل على تفتيح البشرة وتقليل مظهر البقع الداكنة  ويزيل الشوائب دون التسبب في جفافها.", 
+  size: "150 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "sensitive" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.Aw5IqX2dXjzECJDK22kZ4gHaHa?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+
+
+{ 
+  id: 49, 
+  name: "صابون زيت الزيتون", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 25, // السعر بدون كتابة كلمة شيكل
+  use: "يُستخدم هذا الصابون لتنظيف البشرة مع الحفاظ على ترطيبها ونعومتها، ويمكن استخدامه للوجه والجسم. مناسب للاستعمال اليومي.", 
+  benefit: "يحتوي على مسحوق أوراق الزيتون والببتيدات التي تساهم في العناية بالبشرة ومكافحة علامات التقدم في السن", 
+  size: "125 جرام", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse2.mm.bing.net/th/id/OIP.JiRie4F1IN5mrKRV3ifPPgHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+
+{ 
+  id: 49, 
+  name: "غسول رغوي من CeraVe", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 35, // السعر بدون كتابة كلمة شيكل
+  use: "يُستخدم الغسول لتنظيف الوجه من الأوساخ، الزيوت الزائدة، وبقايا المكياج، مع الحفاظ على حاجز البشرة الطبيعي..", 
+  benefit: "يحتوي على سيراميدات تساعد على ترميم حاجز البشرة يحتوي على حمض الهيالورونيك لترطيب البشرة خالٍ من العطور، مما يجعله مناسبًا للبشرة الحساسة ينظف بعمق دون أن يسبب جفافًا مفرطًا", 
+  size: "236 مل", 
+  tag: "normal", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.CCdnOhs_yEYb8oaaeQlCOQHaJQ?w=180&h=225&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+
+{ 
+  id: 50, 
+  name: "كريم هيمالايا لإزالة البقع الداكنة بالكركم", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 35, // السعر بدون كتابة كلمة شيكل
+  use: " الكريم مصنوع من مستخلص الكركم المعصور على البارد، والنياسيناميد، وحمض الجليكوليك.", 
+  benefit: "تقليل البقع الداكنة بشكل ملحوظ وزيادة إشراقة البشرة", 
+  size: "150 مل", 
+  tag: "bestseller", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://himalayawellness.co.za/cdn/shop/files/6291107225982.jpg?v=1708016022&width=1080" 
+},
+
+
+{ 
+  id: 51, 
+  name: "صابونة بالمرز الطبية لمكافحة حب الشباب", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 35, // السعر بدون كتابة كلمة شيكل
+  use: " تُستخدم هذه الصابونة لتنظيف البشرة بعمق، إزالة الشوائب، وفتح المسام المسدودة. كما تساعد على التقليل من حب الشباب والبثور بفضل احتوائها على مكونات فعّالة مثل الكبريت (Sulfur) وفيتامين E.", 
+  benefit: "مكافحة حب الشباب وتقليل البثور وفتح المسام ومنع انسدادها", 
+  size: "100جرام ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://timiteandsons.com/14043-large_default/palmer-s-skin-success-anti-acne-medicated-complexion-bar.jpg" 
+},
+
+{ 
+  id: 52, 
+  name: "غسول وجه لإزالة التان من هيمالايا", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup
+  price: 45, // السعر بدون كتابة كلمة شيكل
+  use: " يُستخدم لإزالة آثار الاسمرار الناتج عن التعرض للشمس، حيث يساعد على تنظيف البشرة بعمق، وتفتيح لونها، وجعلها أكثر انتعاشًا ونضارة .", 
+  benefit: " يحتوي على خلاصة قشر البرتقال والعسل", 
+  size: "100 مل ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.SWyMmE6KSSCD9k_mDo9inAAAAA?w=180&h=342&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+{ 
+  id: 53, 
+  name: "أقراص قطنية للتجميل والعناية بالبشرة", 
+  category: "makeup", // أو haircare أو perfume او bodycare او makeup
+  price: 10, // السعر بدون كتابة كلمة شيكل
+  use: "إزالة المكياج باستخدام مزيل المكياج أو ماء ميسيلار.تنظيف البشرة من الأوساخ والزيوت وضع التونر أو اللوشن على الوجه .العناية بالجروح الصغيرة أو تنظيف الجلد بلطف. هي ناعمة ولطيفة على البشرة، ومناسبة للاستخدام اليومي .", 
+  benefit: " أقراص قطنية دائرية مصنوعة من القطن النقي 100% من ماركة CLEANIC، ويحتوي على 120 قرص.", 
+  size: "120 قطعة ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.e-zikoapteka.pl/cleanic-platki-kosmetyczne-pure-effect-soft-touch-80-20-sztuk.2.jpg" 
+},
+
+{ 
+  id: 54, 
+  name: "شفرات حلاقة blade razor", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:15, // السعر بدون كتابة كلمة شيكل
+  use: " يوفر ما يصل إلى 20 جلسة حلاقة مريحة و مزودة بشفرات دقيقة لضمان الحصول على جلد نظيف .", 
+  benefit: " مناسب لجميع أنواع  بما فيها البشرة الحساسة.", 
+  size: "5 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://ajeeb.net/cdn/shop/products/AJEEB__6_ac43191e-a3ca-48d6-8f9f-2d160af8bbdc_580x.jpg?v=1658047767" 
+},
+
+{ 
+  id: 55, 
+  name: "شفرات فينوس برائحة جوز الهند", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:35, // السعر بدون كتابة كلمة شيكل
+  use: "  تتميز بخمس شفرات مغطاة بطبقة تشبه الألماس لحلاقة ناعمة وأشرطة ترطيب بالماء برائحة جوز الهند. .", 
+  benefit: " مناسب لجميع أنواع  بما فيها البشرة الحساسة.", 
+  size: "5 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.8tsjTlxSq-VU6srRViShSgAAAA?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+
+{ 
+  id: 56, 
+  name: "شفرات فينوس برائحة جوز الهند", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:35, // السعر بدون كتابة كلمة شيكل
+  use: "  تتميز بخمس شفرات مغطاة بطبقة تشبه الألماس لحلاقة ناعمة وأشرطة ترطيب بالماء برائحة جوز الهند. .", 
+  benefit: " مناسب لجميع أنواع  بما فيها البشرة الحساسة.", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://kolboyehuda.co.il/wp-content/uploads/2024/08/1200Wx1200H-00000-7702018587230-001.jpg" 
+},
+
+{ 
+  id: 57, 
+  name: "شفرات حلاقة Gillette Venus Comfortglide Breeze", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:35, // السعر بدون كتابة كلمة شيكل
+  use: "ثلاث شفرات لحلاقة ناعمة وفعالة، مما يضمن حلاقة قريبة ودقيقة و شرائح صابون مدمجة تطلق زبدة الجسم، مما ويقلل من الحاجة إلى كريم حلاقة .تصميم مريح للمقبض، مما يسمح بالتحكم الدقيق أثناء الحلاقة قابلية للتعديل  مناسب للبشرة الحساسة، مما يوفر حلاقة لطيفة وفعالة  .", 
+  benefit: " يمكنك الاستمتاع بحلاقة ناعمة ومريحة مع هذه الشفرة.", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.supermercadoseljamon.com/documents/10180/892067/45045290_M.jpg" 
+},
+
+{ 
+  id: 58, 
+  name: "ماكينة حلاقة كهربائية صغيرة الحجم ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:45, // السعر بدون كتابة كلمة شيكل
+  use: " ازالة الشعر في المناطق الحساسة  .", 
+  benefit: " آمنة على البشرة الحساسة الشفرات مصممة لتقليل التهيج ومقاومة للماء.", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://bk.shajgoj.com/storage/2021/09/Gillette-Venus-Sensitive-2-In-1-Bikini-And-Eyebrow-Styler.jpg" 
+},
+
+
+{ 
+  id: 59, 
+  name: "ماكينة حلاقة كهربائية صغيرة الحجم ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:15, // السعر بدون كتابة كلمة شيكل
+  use: " تتميز بأنها ذات تصميم مريح ومغلفة بطبقة بلاتين لتقليل التهيج و شفراتها من الفولاذ المقاوم للصدأ .", 
+  benefit: "إزالة الشعر من الجسم، مثل الساقين، الذراعين، أو منطقة تحت الإبط،.", 
+  size: "6 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://img.drz.lazcdn.com/static/pk/p/c8d7e135c5d787dcf0a83b58c300a51f.jpg_720x720q80.jpg" 
+},
+
+{ 
+  id: 60, 
+  name: "شفرات حلاقة مميزة  ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:15, // السعر بدون كتابة كلمة شيكل
+  use: "مقبض مطاطي سهل الإمساك وغير قابل للانزلاق. تحتوي على شفرات مطلية بالسيراميك فائقة الحدة لتوفير حلاقة ناعمة. تتضمن تقنية تنظيف الشفرات عن طريق الضغط على مقبض الشطف.", 
+  benefit: "تمنحك حلاقة ناعمة ومريحة.", 
+  size: "4 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://cdn-prd-02.pnp.co.za/sys-master/images/h36/hfe/11187312197662/silo-product-image-v2-01Jun2023-181911-9330344004206-Straight_on-136356-3931_515Wx515H" 
+},
+
+
+{ 
+  id: 61, 
+  name: "شفرات حلاقة  ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:8, // السعر بدون كتابة كلمة شيكل
+  use: "برأس صغير وخفيف الحجم مثالية لحلاقة مريحة ودقيقة .", 
+  benefit: " تحتوي على شريط مرطب بالألوفيرا لتوفير الترطيب .", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.Usu2PYWyhYMW1uYuMCgr1QHaKG?w=180&h=245&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+
+{ 
+  id: 62, 
+  name: "شفرات حلاقة  ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:12, // السعر بدون كتابة كلمة شيكل
+  use: "يتميز نموذج فينوس ستارت بثلاث شفرات مصممة لتوفير حلاقة ناعمة ويحتوي على شريط تزليق للمساعدة في تقليل التهيج. .", 
+  benefit: " تمنحك حلاقة ناعمة ومريحة .", 
+  size: "4 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse2.mm.bing.net/th/id/OIP.X5WF7V7TCpHxhQba7qM7GgAAAA?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+{ 
+  id: 63, 
+  name: " شفرات حلاقة للوجه  ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:12, // السعر بدون كتابة كلمة شيكل
+  use: "دوركو، الخبراء منذ عام 1955 في صناعة شفرات وآلات الحلاقة عالية الجودة بأسعار مناسبة. هذا الموس ذو الشفرة الواحدة يحدد الحواجب بلطف، يزيل الشعيرات الدقيقة، وينعم البشرة. .", 
+  benefit: "لمظهر شبابي ونظيف أكثر .", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse1.mm.bing.net/th/id/OIP.J9iF-9BSb0iNsBWhihOyzQHaHa?cb=thfc1falcon2&w=720&h=720&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+{ 
+  id: 63, 
+  name: " شفرات حلاقة   ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:20, // السعر بدون كتابة كلمة شيكل
+  use: "مقبضه متين  لا ينزلق يمنحك سيطرة كاملة وراحة .", 
+  benefit: "لمظهر انعم واجمل  .", 
+  size: "3 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://www.bing.com/th/id/OIP.e1ltJV-eE_NVZnOChSkSDwAAAA?w=180&h=180&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" 
+},
+
+
+{ 
+  id: 64, 
+  name: " فرشاة التقشير الجاف   ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:20, // السعر بدون كتابة كلمة شيكل
+  use: "شعيرات خشنة من الألياف الطبيعية لتقشير الجلد. قد يساعد في إزالة خلايا الجلد الميتة، مما يجعل الجلد أكثر نعومة وملمسًا ناعماً .", 
+  benefit: " أكثر نعومة وملمسًا ناعماً  .", 
+  size: "1 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://d1flfk77wl2xk4.cloudfront.net/Assets/39/149/XXL_p0214414939.jpg" 
+},
+
+
+{ 
+  id: 65, 
+  name: " ملقط احترافي من Nascita   ", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup
+  price:7, // السعر بدون كتابة كلمة شيكل
+  use: " .", 
+  benefit: "  مصنوع بتصميم مائل الرأس لالتقاط الشعر بسهولة ودقة  .", 
+  size: "1 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://static.ticimax.cloud/57498/uploads/urunresimleri/buyuk/nascita-bronz-cimbiz-58-b-4342.jpg" 
+},
+
+
+{ 
+  id: 66, 
+  name: " ماسك ذهبي للتقشير   ", 
+  category: "skincare", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:5, // السعر بدون كتابة كلمة شيكل
+  use: "تنظيف عميق للبشرة: يساعد على إزالة الأوساخ والشوائب من المسام. إزالة الخلايا الميتة: يعمل على تقشير الطبقة السطحية للبشرة، مما يمنحها مظهراً أكثر نعومة إثراء البشرة بالكولاجين: الكولاجين يساعد على تحسين مرونة البشرة وتقليل مظهر الخطوط الدقيقة إشراقة ونضارة: يمنح البشرة مظهراً مشرقاً وصحياً بعد الاستخدام. تحفيز الدورة الدموية: عملية التقشير تساعد على تنشيط تدفق الدم في الوج .", 
+  benefit: "  لبشرة نظيفة ولامعة  .", 
+  size: "1 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://cdn11.bigcommerce.com/s-ilgxsy4t82/products/72217/images/168991/125357-_1-1024x1024__05089.1662964088.386.513.jpg?c=1" 
+},
+
+{ 
+  id: 67, 
+  name: "ليفة سالكس اليابانية", 
+  category: "bodycare", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:5, // السعر بدون كتابة كلمة شيكل
+  use: "ليفة سالكس مصنوعة من ألياف نايلون خاصة وتوفر تقشيرًا أفضل بفضل نسيجها الخاص، وتساعد على تنشيط الدورة الدموية .", 
+  benefit: " ودعي الخلايا الميتة  .", 
+  size: "1 قطع  ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://m.media-amazon.com/images/I/81Kd1gGXHyL._AC_SL1500_.jpg" 
+},
+
+{ 
+  id: 68, 
+  name: "مزيل العرق والرائحة ALIN Olympus  ", 
+  category: "perfume", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:15, // السعر بدون كتابة كلمة شيكل
+  use: "مزيل العرق ALIN برائحة Olympus يتميز بعطر منعش وأنيق، يميل إلى الروائح العطرية الفاخرة التي تجمع بين النوتات الخشبية واللمسات الزهرية الخفيفة، مما يمنح إحساسًا بالنظافة والانتعاش طوال اليوم. .", 
+  benefit: " حماية طويلة الأمد ضد الروائح الكريهة.  .", 
+  size: "200 مل   ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse1.mm.bing.net/th/id/OIP.wyED0ZenCVGQdGOKIR1yrwHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+
+{ 
+  id: 69, 
+  name: "عطر ALIN Si Perfume Splash  ", 
+  category: "perfume", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:20, // السعر بدون كتابة كلمة شيكل
+  use: "رائحته ناعمة وأنثوية، تمزج بين النفحات الزهرية والفواكه الحلوة مع لمسة دافئة من الأخشاب أو الفانيليا في القاعدة. يعطي إحساسًا بالدفء والرقي، ويُعتبر مناسبًا للاستخدام في النهار والمساء على حد سواء .", 
+  benefit: " حماية طويلة الأمد ضد الروائح الكريهة.  .", 
+  size: "150 مل   ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse4.mm.bing.net/th/id/OIP.z1769g7cr-ZuXozjfQ4B6AHaHa?cb=thfc1falcon2&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+
+{ 
+  id: 70, 
+  name: "مزيل عرق ALIN Paradise ", 
+  category: "perfume", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:15, // السعر بدون كتابة كلمة شيكل
+  use: "رائحته عطرية ومنعشة، مستوحاة من أجواء الفواكه أو الأزهار أو الروائح الاستوائية .", 
+  benefit: " حماية طويلة الأمد ضد الروائح الكريهة.  .", 
+  size: "200 مل   ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://tse3.mm.bing.net/th/id/OIP.CGXA0wA8fH3yM5bRvHQ-nwHaHa?cb=thfc1falcon2&w=2560&h=2560&rs=1&pid=ImgDetMain&o=7&rm=3" 
+},
+
+
+{ 
+  id: 71, 
+  name: "غسول للعناية الشخصية ", 
+  category: "perfume", // أو haircare أو perfume او bodycare او makeup او skincare
+  price:40, // السعر بدون كتابة كلمة شيكل
+  use: "مخصص لتنظيف المنطقة الحساسة و يساعد في الحفاظ على النظافة الشخصية والتقليل من الروائح غير المرغوبة  ", 
+  benefit: "  ", 
+  size: "150 مل   ", 
+  tag: " ", // اكتبيها 'bestseller' إذا كنتِ تريدينه أن يظهر في الأكثر مبيعاً
+  skinType: "all" , // نوع البشرة المتوافقة (oily, dry, mixed, sensitive, all)
+  issue: " ", // المشكلة المتوافقة (acne, pigmentation, dryness, wrinkles)
+  img: "https://down-th.img.susercontent.com/file/th-11134207-7qul9-ljefdsi7l5zl3e" 
+},
+
+
+
+
+
+
+        ];
+
+        // مصفوفة عناصر سلة التسوق الحالية
+        let cart = [];
+
+        // عند تحميل الصفحة بالكامل، نقوم بعرض المنتجات فوراً
+        window.onload = function() {
+            renderAllProducts();
+        };
+
+        // دالة لعرض الكروت في شبكات العرض الافتراضية بالموقع
+        function renderAllProducts() {
+            const bestSellersGrid = document.getElementById('bestSellersGrid');
+            const allProductsGrid = document.getElementById('allProductsGrid');
+            
+            let bestSellersHTML = '';
+            let allProductsHTML = '';
+
+            productsData.forEach(prod => {
+                const cardHTML = createProductCard(prod);
+                allProductsHTML += cardHTML;
+                if(prod.tag === 'bestseller') {
+                    bestSellersHTML += cardHTML;
+                }
+            });
+
+            if(bestSellersGrid) bestSellersGrid.innerHTML = bestSellersHTML;
+            if(allProductsGrid) allProductsGrid.innerHTML = allProductsHTML;
         }
-        const item = cart.find(i => i.id === productId);
-        if (item) item.quantity = newQty;
-        saveCart();
-        renderCartModal();
-    }
-    function renderCartModal() {
-        const container = document.getElementById("cartItemsList");
-        if (!container) return;
-        if (cart.length === 0) {
-            container.innerHTML = "<p>السلة فارغة حالياً 🛒</p>";
-            document.getElementById("cartTotal").innerText = "0";
-            return;
-        }
-        let total = 0;
-        container.innerHTML = cart.map(item => {
-            total += item.price * item.quantity;
+
+        // دالة إنشاء الهيكل البرمجي الجمالي لكرت المنتج الواحد
+        function createProductCard(prod) {
             return `
-                <div class="cart-item">
-                    <div><strong>${item.name}</strong><br><small>${item.price} ₪</small></div>
+                <div class="product-card" data-id="${prod.id}">
+                    <img src="${prod.img}" class="product-image" alt="${prod.name}" onclick="openLightbox('${prod.img}')">
                     <div>
-                        <button style="background:#e9cfbe; border:none; padding:4px 10px; border-radius:20px;" onclick="updateQuantity(${item.id}, ${item.quantity-1})">-</button>
-                        <span style="margin:0 10px;">${item.quantity}</span>
-                        <button style="background:#e9cfbe; border:none; padding:4px 10px; border-radius:20px;" onclick="updateQuantity(${item.id}, ${item.quantity+1})">+</button>
-                        <button style="background:#ddb69b; border:none; margin-right:10px; padding:4px 12px; border-radius:20px;" onclick="removeFromCart(${item.id})">حذف</button>
+                        <h4 class="product-name">${prod.name}</h4>
+                        <p class="product-desc">${prod.use}</p>
+                        <span class="product-benefit">✨ ${prod.benefit}</span>
+                    </div>
+                    <div>
+                        <div class="product-meta">
+                            <span style="color:var(--text-dark);">${prod.price} شيكل</span>
+                            <span style="color:var(--text-muted); font-size:0.8rem;">الحجم: ${prod.size}</span>
+                        </div>
+                        <div class="quantity-control">
+                            <button class="qty-btn" onclick="changeQty(${prod.id}, -1)">-</button>
+                            <input type="number" id="qty-${prod.id}" class="qty-input" value="1" min="1" max="99" readonly>
+                            <button class="qty-btn" onclick="changeQty(${prod.id}, 1)">+</button>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${prod.id})">
+                            <i class="fa fa-shopping-cart"></i> إضافة للسلة
+                        </button>
                     </div>
                 </div>
             `;
-        }).join('');
-        document.getElementById("cartTotal").innerText = total;
-    }
+        }
 
-    function renderGroups() {
-        const container = document.getElementById("groupsContainer");
-        container.innerHTML = "";
-        for (const [groupName, products] of Object.entries(productGroups)) {
-            const groupDiv = document.createElement("div");
-            groupDiv.className = "group-card";
-            groupDiv.innerHTML = `<h3>📌 ${groupName}</h3>`;
-            products.forEach(prod => {
-                const prodElement = document.createElement("div");
-                prodElement.className = "product-item";
-                prodElement.innerHTML = `
-                    <img class="product-img" src="${prod.img}" alt="${prod.name}" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-name">${prod.name}</div>
-                        <div class="product-price">${prod.price} ₪</div>
+        // دالة لتعديل أرقام الكمية داخل كرت المنتج
+        function changeQty(id, delta) {
+            const input = document.getElementById(`qty-${id}`);
+            if(input) {
+                let current = parseInt(input.value) || 1;
+                current += delta;
+                if(current < 1) current = 1;
+                if(current > 99) current = 99;
+                input.value = current;
+            }
+        }
+
+        // دالة تصفية المنتجات بناءً على شريط التبويب (Pills) العلوي
+        function filterCategory(category, btn) {
+            // إزالة الحالة النشطة من كل الأزرار وإضافتها للزر الحالي
+            const tabs = document.querySelectorAll('.categories-tabs .tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            const allProductsGrid = document.getElementById('allProductsGrid');
+            let filteredHTML = '';
+
+            productsData.forEach(prod => {
+                if(category === 'all' || prod.category === category) {
+                    filteredHTML += createProductCard(prod);
+                }
+            });
+
+            if(allProductsGrid) allProductsGrid.innerHTML = filteredHTML;
+        }
+
+        // فتح وإغلاق صندوق استبيان البشرة المنبثق
+        function toggleQuizModal(show) {
+            const modal = document.getElementById('quizModal');
+            if(show) modal.classList.add('active');
+            else modal.classList.remove('active');
+        }
+
+        // فتح وإغلاق درج السلة الجانبي
+        function toggleCart(show) {
+            const drawer = document.getElementById('cartDrawer');
+            if(show) drawer.classList.add('active');
+            else drawer.classList.remove('active');
+        }
+
+        // المعالجة البرمجية الدقيقة لفحص البشرة وربط النتائج فوراً
+        function handleQuizSubmit(event) {
+            event.preventDefault();
+            
+            const selectedSkinType = document.getElementById('quizSkinType').value;
+            const selectedIssue = document.getElementById('quizProblem').value;
+
+            const recSection = document.getElementById('recommendationsSection');
+            const recGrid = document.getElementById('recommendedProductsGrid');
+            
+            // تصفية ذكية: جلب المنتجات التي تطابق نوع بشرتها ومشكلتها أو المنتجات العامة (all) الشاملة
+            const recommendedProducts = productsData.filter(prod => {
+                if(prod.category !== 'skincare') return false; // الفحص مخصص لمنتجات العناية بالبشرة فقط
+                
+                const matchType = (prod.skinType === 'all' || prod.skinType === selectedSkinType);
+                const matchIssue = (prod.issue === 'all' || prod.issue === selectedIssue);
+                
+                return matchType && matchIssue;
+            });
+
+            if(recommendedProducts.length > 0) {
+                let gridHTML = '';
+                recommendedProducts.forEach(prod => {
+                    gridHTML += createProductCard(prod);
+                });
+                if(recGrid) recGrid.innerHTML = gridHTML;
+                if(recSection) recSection.style.display = 'block';
+                
+
+                // التمرير السلس نحو قسم المنتجات الموصى بها لرؤيتها فوراً
+                recSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                if(recGrid) recGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; font-weight: 700; padding: 20px;">لم نجد منتجاً مخصصاً جداً لهذه الحالة، ننصحكِ بالتواصل معنا مباشرة عبر الواتساب لفحص مخصص ومجاني بالكامل!</p>`;
+                if(recSection) recSection.style.display = 'block';
+            }
+
+            // إغلاق المودال بعد إظهار النتيجة بنجاح للزبونة
+            toggleQuizModal(false);
+        }
+
+        // إضافة المنتجات إلى سلة المشتريات بشكل ديناميكي وحساب قيمتها
+        function addToCart(id) {
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const quantity = parseInt(qtyInput.value) || 1;
+
+            const product = productsData.find(p => p.id === id);
+            if(!product) return;
+
+            // التحقق إذا كان المنتج موجود مسبقاً بالسلة لزيادة كميته فقط
+            const existing = cart.find(item => item.product.id === id);
+            if(existing) {
+                existing.quantity += quantity;
+            } else {
+                cart.push({ product: product, quantity: quantity });
+            }
+
+            // إعادة ضبط حقل كمية الكرت إلى 1
+            qtyInput.value = 1;
+
+            updateCartUI();
+            toggleCart(true); // فتح السلة تلقائياً لإشعار الزبونة بنجاح الإضافة
+        }
+
+        // إزالة منتج فردي تماماً من السلة
+        function removeCartItem(id) {
+            cart = cart.filter(item => item.product.id !== id);
+            updateCartUI();
+        }
+
+        // تحديث الواجهات الرسومية والمجاميع والعدادات الخاصة بسلة المشتريات
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartTotalSum = document.getElementById('cartTotalSum');
+
+            let totalItems = 0;
+            let totalPrice = 0;
+            let itemsHTML = '';
+
+            cart.forEach(item => {
+                totalItems += item.quantity;
+                totalPrice += (item.product.price * item.quantity);
+
+                itemsHTML += `
+                    <div class="cart-item">
+                        <img src="${item.product.img}" style="width:50px; height:50px; object-fit:contain; border-radius:6px;" alt="">
+                        <div class="cart-item-details">
+                            <h5 style="font-size:0.85rem; font-weight:700;">${item.product.name}</h5>
+                            <p style="font-size:0.8rem; color:var(--text-muted);">${item.product.price} شيكل × ${item.quantity}</p>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeCartItem(${item.product.id})">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </div>
-                    <button class="add-to-cart-btn" data-id="${prod.id}">➕ إضافة للسلة</button>
                 `;
-                groupDiv.appendChild(prodElement);
             });
-            container.appendChild(groupDiv);
+
+            if(cartCount) cartCount.innerText = totalItems;
+            if(cartTotalSum) cartTotalSum.innerText = totalPrice;
+            if(cartItemsList) {
+                if(cart.length === 0) {
+                    cartItemsList.innerHTML = `<p style="text-align:center; padding:30px; font-weight:600; color:var(--text-muted);">سلتكِ فارغة حالياً.. تصفحي واختاري جمالكِ! 🛍️</p>`;
+                } else {
+                    cartItemsList.innerHTML = itemsHTML;
+                }
+            }
         }
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const pid = parseInt(btn.getAttribute('data-id'));
-                const product = productsDatabase.find(p => p.id === pid);
-                if (product) addToCart(product);
-            });
-        });
-    }
 
-    const quiz = [
-        { id: "skin", text: "نوع بشرتك؟", options: ["جافة", "دهنية", "مختلطة", "حساسة", "عادية", "متقدمة"] },
-        { id: "hair", text: "نوع شعرك؟", options: ["جاف", "دهني", "تالف", "عادي"] },
-        { id: "concern", text: "أكبر مشكلة تواجهك؟", options: ["جفاف", "زيوت", "بهتان", "هيشان", "تجاعيد", "تقصف", "توازن", "حماية"] }
-    ];
-    function renderQuiz() {
-        const container = document.getElementById("quizQuestions");
-        container.innerHTML = "";
-        quiz.forEach((q, idx) => {
-            const div = document.createElement("div");
-            div.className = "question";
-            div.innerHTML = `<p>${idx+1}. ${q.text}</p>`;
-            q.options.forEach(opt => {
-                div.innerHTML += `<label><input type="radio" name="q${idx}" value="${opt}"> ${opt}</label>`;
+        // معالجة تأكيد الطلب وإرساله إلى واتساب المتجر منسقاً بالكامل
+        function handleCheckout(event) {
+            event.preventDefault();
+
+            if(cart.length === 0) {
+                alert("يرجى إضافة منتجات إلى السلة أولاً قبل إرسال الطلب!");
+                return;
+            }
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const area = document.getElementById('custArea').value;
+            const payment = document.getElementById('custPayment').value;
+            const total = document.getElementById('cartTotalSum').innerText;
+
+            // صياغة نص الرسالة المتجهة للواتساب بشكل فخم ومنظم للطباعة أو القراءة
+            let message = `*طلب جديد من متجر Noor Store 🛍️*\n\n`;
+            message += `👤 *اسم الزبونة:* ${name}\n`;
+            message += `📞 *رقم الجوال:* ${phone}\n`;
+            message += `📍 *المنطقة/المدينة:* ${area}\n`;
+            message += `💳 *طريقة الدفع:* ${payment}\n`;
+            message += `------------------------------------\n`;
+            message += `📦 *المنتجات المطلوبة:*\n`;
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.product.name} (الكمية: ${item.quantity}) -> ${item.product.price * item.quantity} شيكل\n`;
             });
-            container.appendChild(div);
-        });
-    }
-    function getQuizAnswers() {
-        let skin = null, hair = null, concern = null;
-        const radios0 = document.querySelectorAll('input[name="q0"]');
-        for (let r of radios0) if (r.checked) skin = r.value;
-        const radios1 = document.querySelectorAll('input[name="q1"]');
-        for (let r of radios1) if (r.checked) hair = r.value;
-        const radios2 = document.querySelectorAll('input[name="q2"]');
-        for (let r of radios2) if (r.checked) concern = r.value;
-        return { skin, hair, concern };
-    }
-    function suggestByQuiz() {
-        const { skin, hair, concern } = getQuizAnswers();
-        if (!skin && !hair && !concern) {
-            document.getElementById("recList").innerHTML = "<p>⚠️ أجب على سؤال واحد على الأقل للحصول على اقتراحات.</p>";
-            return;
+
+            message += `------------------------------------\n`;
+            message += `💰 *المجموع الكلي الفعلي:* ${total} شيكل\n\n`;
+            message += `✨ _تم إنشاء الطلب تلقائياً عبر موقع متجر نور للجمال_ 💖`;
+
+            // تشفير النص ليتوافق مع روابط الإنترنت العادية
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/972597010809?text=${encodedMessage}`;
+
+            // فتح رابط الواتساب في نافذة جديدة لإتمام الإرسال
+            window.open(whatsappURL, '_blank');
+            
+            // إفراغ السلة وإعادة تهيئة الموقع بعد إرسال الطلب بنجاح
+            cart = [];
+            updateCartUI();
+            toggleCart(false);
+            document.getElementById('checkoutForm').reset();
+            alert("تم تجهيز تفاصيل طلبكِ بنجاح! سيتم نقلكِ الآن إلى الواتساب لإرساله لنا  لتأكيده الفوري. شكراً لكِ 💖");
         }
-        let filtered = productsDatabase.filter(p => {
-            let match = false;
-            if (skin && p.skinType === skin) match = true;
-            if (hair && p.hairType === hair) match = true;
-            if (concern && p.concern === concern) match = true;
-            return match;
+
+        // محرك البحث الذكي وحقل الاقتراحات التلقائية (Autocomplete)
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const listContainer = document.getElementById('autocompleteList');
+            
+            if(!query) {
+                listContainer.style.display = 'none';
+                return;
+            }
+
+            // تصفية المنتجات التي يحتوي اسمها على نص البحث
+            const matches = productsData.filter(p => p.name.toLowerCase().includes(query));
+
+            if(matches.length > 0) {
+                let suggestionsHTML = '';
+                // إظهار أول 5 اقتراحات مطابقة فقط لجمالية التصميم
+                matches.slice(0, 5).forEach(prod => {
+                    suggestionsHTML += `<div class="suggestion-item" onclick="selectSuggestion('${prod.name}')">${prod.name}</div>`;
+                });
+                listContainer.innerHTML = suggestionsHTML;
+                listContainer.style.display = 'block';
+            } else {
+                listContainer.innerHTML = `<div class="suggestion-item" style="color:var(--text-muted); cursor:default;">لا توجد منتجات مطابقة..</div>`;
+                listContainer.style.display = 'block';
+            }
+        }
+
+        // عند نقر الزبونة على اقتراح معين من قائمة البحث
+        function selectSuggestion(name) {
+            document.getElementById('searchInput').value = name;
+            document.getElementById('autocompleteList').style.display = 'none';
+            
+            // تصفية شبكة العرض السفلية لتظهر المنتج المختار فوراً
+            const allProductsGrid = document.getElementById('allProductsGrid');
+            const matched = productsData.filter(p => p.name === name);
+            if(matched.length > 0 && allProductsGrid) {
+                allProductsGrid.innerHTML = createProductCard(matched[0]);
+                allProductsGrid.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+
+        // وظائف نافذة اللايت بوكس لتكبير صور المنتجات عند النقر بجمالية فائقة
+        function openLightbox(src) {
+            const lb = document.getElementById('imageLightbox');
+            const img = document.getElementById('lightboxImg');
+            if(lb && img) {
+                img.src = src;
+                lb.style.display = 'flex';
+            }
+        }
+
+        function closeLightbox() {
+            document.getElementById('imageLightbox').style.display = 'none';
+        }
+
+        // إغلاق الاقتراحات تلقائياً إذا نقرت الزبونة في أي مكان خارج صندوق البحث
+        document.addEventListener('click', function(e) {
+            if(!e.target.closest('.search-wrapper')) {
+                const list = document.getElementById('autocompleteList');
+                if(list) list.style.display = 'none';
+            }
         });
-        if (filtered.length === 0) filtered = productsDatabase.slice(0, 3);
-        const recDiv = document.getElementById("recList");
-        recDiv.innerHTML = filtered.map(p => `
-            <div class="rec-card">
-                <div><strong>🧴 ${p.name}</strong><br>${p.price} ₪</div>
-                <button class="add-to-cart-btn" data-rec="${p.id}">➕ أضف للسلة</button>
-            </div>
-        `).join('');
-        document.querySelectorAll('[data-rec]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const pid = parseInt(btn.getAttribute('data-rec'));
-                const prod = productsDatabase.find(x => x.id === pid);
-                if (prod) addToCart(prod);
-            });
-        });
-    }
 
-    const modal = document.getElementById("cartModal");
-    const cartIconBtn = document.getElementById("cartIcon");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    cartIconBtn.onclick = () => { modal.style.display = "flex"; renderCartModal(); };
-    closeModalBtn.onclick = () => modal.style.display = "none";
-    window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
-    document.getElementById("checkoutBtn").onclick = () => { alert("شكراً للتسوق من متجر نور"); cart = []; saveCart(); modal.style.display = "none"; };
 
-    function bindStore() {
-        const inp = document.getElementById("storeNameInput");
-        const titleSpan = document.getElementById("storeTitle");
-        inp.addEventListener("input", (e) => { let val = e.target.value.trim(); if (val === "") val = "متجر نور"; titleSpan.innerText = val; });
-    }
-
-    function init() {
-        renderGroups();
-        renderQuiz();
-        bindStore();
-        loadCart();
-        document.getElementById("submitQuizBtn").addEventListener("click", suggestByQuiz);
-    }
-    init();
-
-    Object.freeze(productsDatabase);
-    Object.freeze(productGroups);
-</script>
+    </script>
 </body>
 </html>
